@@ -19,12 +19,12 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     </head>
     <body>
-		<div class="fixed-action-btn" style="bottom: 45px; right: 24px;z-index: 999;" >
+		<div class="fixed-action-btn" style="bottom: 45px; right: 24px;z-index: 999;">
 		    <a data-activates="mobile-menu" class="button-collapse btn-floating btn-large white">
 		      <i class="black-text mdi-navigation-menu"></i>
 		    </a>
 		    <ul>
-		      	<li><a class="btn-floating btn-large black tooltipped" data-position="left" data-delay="50" data-tooltip="Top" onclick="go_to('menu');"><i class="up_ic mdi-hardware-keyboard-backspace"></i></a></li>
+		      	<li><a class="btn-floating btn-large black tooltipped" data-position="left" data-delay="50" data-tooltip="Top" onclick="go_to('home');"><i class="up_ic mdi-hardware-keyboard-backspace"></i></a></li>
 		    	<li><a class="btn-floating btn red tooltipped" data-position="left" data-delay="50" data-tooltip="Customise Shirt" onclick="go_to('try_cust');"><i class="mdi-editor-mode-edit"></i></a></li>
 		    </ul>		    
 		</div>
@@ -37,7 +37,7 @@
 	        	<li><a href=""  class="black-text">Contact Us</a></li>
 		    </ul>
 		</nav>
-    	<nav style="height: 32px;line-height: 32px;" class="white" id="menu">
+    	<nav style="height: 32px;line-height: 32px;" class="white">
 			    <div class="nav-wrapper white">
 			    	<div class="container">
 			    		<a class="right black-text" href="">Log in | Sign up</a>
@@ -127,12 +127,14 @@
 		      			<div class="blue"></div>
 		      			<div class="green"></div>
 		      			<div class="orange"></div>
-		      			<div class="white"></div>
+		      			<div></div>
 		      			<div class="yellow"></div>
 		      			<div class="indigo"></div>
 		      			<div class="purple"></div>
 		      			<div class="cyan"></div>
 		      			<div class="black"></div>
+		      			<div class="lime"></div>
+		      			<div class="brown"></div>
 		      		</div>
 		      		<div class="alt_list shirt_l center">
 		      			<h6>Choose Shirt</h6>
@@ -148,7 +150,7 @@
 		      			<img src="img/12.png">
 		      		</div>
 		      		<div class="center shirt_canv">		      			
-		      			<div class="design_element center draggable dropdown-button fr" data-activates='desn_drop_opts' style="position: absolute;top: 25%; left: 23%;">
+		      			<div class="design_element center draggable fr" style="position: absolute;top: 100px; left: 85.6px;">
 		      				<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="128px" height="96px" viewBox="0 0 640 480" style="width: 128px; height: 96px;" xml:space="preserve">
 								<g>
 									<g>
@@ -735,28 +737,25 @@
 								</g>
 							</svg>
 						</div>
-						<div class="design_element center draggable dropdown-button bc" data-activates='desn_drop_opts' style="position: absolute;top: 11%; left: 30%; display: none">
-						</div>
-						<ul id='desn_drop_opts' class='dropdown-content'>
-						    <li><a onclick="rm_desn()">Remove</a></li>
-						</ul>
 		      		</div>
 		      		<!-- <a class='btn white flip black-text' onclick="flip_s()">Back</a> -->
 		      	</div>
-		      	<div class="col l4 m6 s12">
+		      	<div class="col l4 m6 s12 dsn_opt">
 		      		<div class="color_pal center">
 		      			<h6>Choose Design Color</h6>
-		      			<div onclick="chang_d_to(this)" class="red"></div>
-		      			<div onclick="chang_d_to(this)" class="pink"></div>
-		      			<div onclick="chang_d_to(this)" class="blue"></div>
-		      			<div onclick="chang_d_to(this)" class="green"></div>
-		      			<div onclick="chang_d_to(this)" class="black"></div>
-		      			<div onclick="chang_d_to(this)" class="orange"></div>
-		      			<div onclick="chang_d_to(this)" class="white"></div>
-		      			<div onclick="chang_d_to(this)" class="yellow"></div>
-		      			<div onclick="chang_d_to(this)" class="indigo"></div>
-		      			<div onclick="chang_d_to(this)" class="purple"></div>
-		      			<div onclick="chang_d_to(this)" class="cyan"></div>
+		      			<div class="red"></div>
+		      			<div class="pink"></div>
+		      			<div class="blue"></div>
+		      			<div class="green"></div>
+		      			<div class="orange"></div>
+		      			<div class="white"></div>
+		      			<div class="yellow"></div>
+		      			<div class="indigo"></div>
+		      			<div class="purple"></div>
+		      			<div class="cyan"></div>
+		      			<div class="black"></div>
+		      			<div class="lime"></div>
+		      			<div class="brown"></div>
 		      		</div>
 		      		<div class="alt_list desn_l center">
 		      			<h6>Available Designs</h6>

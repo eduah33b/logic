@@ -8,7 +8,7 @@
 	width: 70%;
 }
 .shirt_canv {
-	width: 100%;
+	width: 300px;
 	height: 400px; 
 	overflow: hidden;
 	white-space: nowrap;
@@ -96,7 +96,7 @@
 	position: absolute;
 	top: 0px;
 	left: 0px;
-	width: auto;
+	width: 320px;
 	height: 400px;
 }
 

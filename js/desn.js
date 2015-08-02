@@ -1,10 +1,9 @@
 $( document ).ready(function(){
-	function change_desn_color_to(th){
-		$('.shirt_canv .draggable:visible svg path').css('fill', $(th).css('background-color'));
-		$('.shirt_canv .draggable:visible svg path').css('stroke', $(th).css('background-color'));
-	}
-	chang_d_to = change_desn_color_to;
 
+	$('.dsn_opt .color_pal>div').click(function(){
+		$('.shirt_canv .draggable:visible svg path').css('fill', $(this).css('background-color'));
+		$('.shirt_canv .draggable:visible svg path').css('stroke', $(this).css('background-color'));
+	});
 
 	function place_this(dsn) {
 		$('.shirt_canv .draggable:visible').html($(dsn).html());
@@ -19,9 +18,9 @@ $( document ).ready(function(){
 	rm_desn = remove_design;
 
 	$('.alt_list.shirt_l>div>img').click(function(){
-		/*if($(this).html() == $('.sh_col').html())
+		if($('.sh_col img:nth-child(1)').attr('src') == $(this).attr('src'))
 			 Materialize.toast('Shirt Currently displayed', 2000);
-		else*/
+		else
 	    	$('.sh_col img:nth-child(1)').attr('src', $(this).attr('src'));
 	    	$('.sh_col img:nth-child(2)').attr('src', $(this).attr('src').replace('.jpg', '.png'));
 	});

@@ -1,5 +1,4 @@
 $( document ).ready(function(){
-	var rtimer = '';
 	$('.button-collapse').sideNav({
 	      	menuWidth: 300, // Default is 240
 	      	edge: 'left', // Choose the horizontal origin
@@ -7,7 +6,6 @@ $( document ).ready(function(){
 	    }
 	);
       
-    $('.parallax').parallax();
     $('.slider#home').slider({full_width: true, interval: 600000});
     $('.slider#comments').slider({full_width: true, indicators: false});
 
@@ -21,18 +19,6 @@ $( document ).ready(function(){
 	    }
 	);
 
-	$(window).resize(function(){
-    	if(rtimer != '')
-			clearTimeout(rtimer);
-
-		rtimer = setTimeout(function(){update_desc();}, 2000);            
-    });
-	function update_desc(){
-		for (var i = 1; i < 4; i++) {
-			$('#try_cust>.cust_overl>.row>div:nth-of-type(' + i + ')').height($('#try_cust>.row>div:nth-of-type(' + i + ')').height());
-		}
-	};
-
     function go_to_this(id) {
 		$('html, body').animate({ scrollTop: document.getElementById(id).offsetTop + 'px'}, 400);
 	}
@@ -42,7 +28,4 @@ $( document ).ready(function(){
 		scroll: false,
 		containment: "parent"
 	});
-	
-	update_desc();
-	/*init();*/
 });
