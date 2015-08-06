@@ -26,6 +26,6 @@ $( document ).ready(function(){
 	});
 
 	$('.shirt_opt_pane .color_pal>div').click(function(){
-		$('.main_sh_pane .sh_col img:nth-child(2)').css('background-color', $(this).css('background-color').replace(')', ', 0.55)'));
+		$('.main_sh_pane .sh_col img:nth-child(2)').css('background-color', $(this).css('background-color').replace(')', ', 0.75)'));
 	});	
 });
