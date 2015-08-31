@@ -5,381 +5,273 @@
 		<!--Import materialize.css-->
 		<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
 		<link type="text/css" rel="stylesheet" href="css/general.css"  media="screen,projection"/>
+		<link type="text/css" rel="stylesheet" href="css/landing.css"  media="screen,projection"/>
 
 		<!--Import jQuery before materialize.js-->
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/materialize.min.js"></script>
 		<script type="text/javascript" src="js/general.js"></script>
+		<script type="text/javascript" src="js/landing.js"></script>
 
 		<!--Let browser know website is optimized for mobile-->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     </head>
     <body>
-    <!-- Dynamic Pages -->
-    	<div class="dy_pages">
-	    	<div class="section dy_page" id="login_page">
-	    		<div class="container">
-	    			<p class="center"><a class="btn-flat white blue-text" style="font-size: 2.5rem;text-transform: none;">Login</a> /<a onclick="open_this('register_page')" class="waves-effect waves-yellow btn btn-flat white black-text rounded" style="font-size: 1rem;text-transform: none;">Register</a></p>
-	    			<div class="row">
-	    				<div class="input-field col s12">
-	    					<i class="mdi-action-perm-identity prefix"></i>
-					      	<input id="uname" type="text" class="validate">
-					      	<label for="uname">Username</label>
-					    </div>
-					    <div class="input-field col s12">
-	    					<i class="mdi-action-lock-outline prefix"></i>
-					      	<input id="pword" type="password" class="validate">
-					      	<label for="pword">Pass Phrase</label>
-					    </div>
-					    <div class="col l8 m6 s12 center">
-					    	<br><br>
-					    	<a>Forgot your password?</a>
-					    </div>
-					    <div class="col l4 m6 s12 center">
-					    <br><br>
-					    	<a class="waves-effect waves-green btn white blue-text rounded">Login</a>
-					    </div>
-	    			</div>
-	    		</div>
-	    	</div>
+		<nav class="transparent" style="box-shadow: none; position: absolute;">
+		    <div class="nav-wrapper transparent">
+		      <a onclick="go_to('home')" class="logo"><img src="img/icon.png">Logic</a>
+		      <ul id="nav-mobile" class="right hide-on-small-only">
+	        	<li><a onclick="go_to('look_book')">LookBook</a></li>
+	        	<li><a onclick="go_to('givers')">Logic Givers</a></li>
+	        	<li><a onclick="go_to('about_us')">About us</a></li>
+	        	<li><a onclick="go_to('contact_us')">Contact Us</a></li>
+		        <li><a href="cmise.html#login_page">Login / Register</a></li>
+		      </ul>
+		      <a data-activates="slide-out" class="hide-on-med-and-up button-collapse left" style="margin-right: 20px;"><i class="mdi-navigation-menu"></i></a>
+		      <ul id="slide-out" class="side-nav grey darken-4">
+			    <li><a onclick="go_to('look_book')" class="white-text">LookBook</a></li>
+	        	<li><a onclick="go_to('givers')"  class="white-text">Logic Givers</a></li>
+	        	<li><a onclick="go_to('about_us')" class="white-text">About us</a></li>
+	        	<li><a onclick="go_to('contact_us')" class="white-text">Contact Us</a></li>
+		        <li><a href="cmise.html#login_page" class="white-text">Login / Register</a></li>
+			  </ul>
+		    </div>
+		</nav>
 
-	    	<div class="section dy_page" id="register_page">
-	    		<div class="container">
-	    			<p class="center"><a class="btn-flat white blue-text" style="font-size: 2.5rem;text-transform: none;">Register</a> /<a onclick="open_this('login_page')" class="waves-effect waves-yellow btn btn-flat white black-text rounded" style="font-size: 1rem;text-transform: none;">Login</a></p>
-	    			<div class="row">
-	    				<div class="input-field col l6 m6 s12">
-					      	<input id="fname" type="text" class="validate">
-					      	<label for="fname">First Name</label>
-					    </div>
-					    <div class="input-field col l6 m6 s12">
-	    					
-					      	<input id="lword" type="text" class="validate">
-					      	<label for="lword">Last Name</label>
-					    </div>
-					    <div class="input-field col l12 m12 s12">
-					      	<input id="runame" type="text" class="validate">
-					      	<label for="runame">Username</label>
-					    </div>
-					    <div class="input-field col l12 m12 s12">
-	    					
-					      	<input id="remail" type="email" class="validate">
-					      	<label for="remail">Email</label>
-					    </div>
-					    <div class="input-field col l12 m12 s12">
-	    					
-					      	<input id="rpword" type="password" class="validate">
-					      	<label for="rpword">Pass Phrase</label>
-					    </div>
-					    <div class="input-field col l12 m12 s12">
-	    					
-					      	<input id="cpword" type="password" class="validate">
-					      	<label for="cpword">Confirm Passwrod</label>
-					    </div>
-					    <div class="col l6 m6 s12">
-					    Gender
-					    	<p>
-						      <input name="gend" type="radio" id="rm" class="with-gap" />
-						      <label for="rm">Male</label>
-						      <input name="gend" type="radio" id="rf" class="with-gap"/>
-						      <label for="rf">Female</label>
-						    </p>
-					    </div>
-					    <div class="input-field col l6 m6 s12">
-						    <textarea id="addr" class="materialize-textarea"></textarea>
-          					<label for="addr">Your Address (for home delivery)</label>
-					    </div>
-					    <div class="col l6 m6 s12">
-						    <select class="browser-default">
-						    	<option value="" disabled selected>City</option>
-						      	<option value="1">Kumasi</option>
-						      	<option value="2">Accra</option>
-						      	<option value="3">Obuasi</option>
-						    </select>
+		<div class="section landing_page_top" id="home">
+			<div class="container center">
+				<h3 class="white-text" style="margin-top: 30%;">You Design, We Deleiver</h3>
+				<br class="hide-on-small-only">
+				<h6 class="grey-text text-lighten-1">Create, cutomize and order you own designed T-Shirt for the all in the comfort of your room.</h6>
+				<br>
+				<a class="waves-effect waves-light btn red" href="cmise.html#desn_studio">Start Customizing</a>
+			</div>
+		</div>
+	
+		<div class="section">
+			<div class="container center">
+				<h5>Start Customizing T-shirt in Seconds</h5>
+				<p class="grey-text text-lighten-1">It is a long established fact that a reader will be distrated by the readable content of a page when looking at its layout. Create, cutomize and order you own designed T-Shirt for the all in the comfort of your room.</p>
+				<br>
+				<a class="waves-effect waves-light btn red" href="cmise.html#desn_studio">Customizing a T-Shirt Now</a>
+				<br><br><br><br>
+			</div>
+		</div>
+
+		<div class="section grey lighten-4">
+			<div class="container center">
+				<h5>What Are You Getting</h5>
+				<br><br>
+				<div class="row">
+					<div class="col l4 m6 s12">
+						<div class="row no-padding">
+							<div class="col s4 no-padding"><i class="medium mdi-image-palette no-padding blue-text right" style="line-height: 4rem;"></i></div>
+							<div class="col s8 no-padding left"><h6 style="text-align: left; font-size: 1.2rem;">Easy To Customize And Design</h6></div>
 						</div>
-						<div class="input-field col l6 m6 s12">
-					      	<input id="phnum" type="text" class="validate">
-					      	<label for="phnum">Phone Number</label>
-					    </div>
+						<p class="grey-text text-lighten-1">It is a long established fact tahta a reader will be distrated by the readable content of a page when looking at its layout.</p>
+					</div>
+					<div class="col l4 m6 s12">
+						<div class="row no-padding">
+							<div class="col s4 no-padding"><i class="medium mdi-maps-directions-car no-padding blue-text right" style="line-height: 4rem;"></i></div>
+							<div class="col s8 no-padding left"><h6 style="text-align: left; font-size: 1.2rem;">Fast Delivery To Your Doorstep</h6></div>
+						</div>
+						<p class="grey-text text-lighten-1">It is a long established fact tahta a reader will be distrated by the readable content of a page when looking at its layout.</p>
+					</div>
+					<div class="col l4 m6 s12">
+						<div class="row no-padding">
+							<div class="col s4 no-padding"><i class="medium mdi-social-share no-padding blue-text right" style="line-height: 4rem;"></i></div>
+							<div class="col s8 no-padding left"><h6 style="text-align: left; font-size: 1.2rem;">Share With Friends</h6></div>
+						</div>
+						<p class="grey-text text-lighten-1">It is a long established fact tahta a reader will be distrated by the readable content of a page when looking at its layout.</p>
+					</div>
+				</div>
+			</div>
+		</div>
 
-					    <div class="col l8 m6 s12 center">
-					    	<br><br>
-					    	<p>
-						      	<input type="checkbox" id="test5" />
-						      	<label for="test5">I agree to Logic's <a>Terms and Conditions</a> of service</label>
-						    </p>
-					    </div>
-					    <div class="col l4 m6 s12 center">
-					    <br><br>
-					    	<a class="waves-effect waves-green btn btn-large white blue-text rounded">Create Account</a>
-					    </div>
+		<div class="section grey lighten-4" id="about_us">
+			<div class="container">
+				<h5 class="center">About Us</h5>
+				<br><br>
+				<div class="row">
+					<div class="col l8 m8 s12 left">
+					<h7 class="header left">Who are we?</h7>
+					<p class="grey-text text-lighten-1 left">It is a long established fact tahta a reader will be distrated by the readable content of a page when looking at its layout. It is a long established fact tahta a reader will be distrated by the readable content of a page when looking at its layout.</p>
+					</div>
+					<div class="col l4 m4 s12">
+						<img src="img/2.png" width="100%">
+					</div>
+				</div>
+			</div>
+		</div>
 
-					    <div class="col l12 m12 s12 center">
+		<div class="section" id="look_book">
+			<div class="container">
+				<h5 class="center">Look Book</h5>
+				<div class="row">
+					<div class="col l4 m6 s12">
+						<div class="card">
+				            <div class="card-image">
+				              <img src="img/models/4.jpg">
+				              <span class="card-title">Social Hazard</span>
+				            </div>
+				            <div class="card-content">
+					            <a class="soc_ion">l</a>
+					            <a class="soc_ion">f</a>
+					            <a class="right" style="font-size: 3rem;margin: 0px;"><i class="mdi-action-add-shopping-cart green-text"></i></a>	 
+				            </div>           
+				        </div>
+					</div>
+					<div class="col l4 m6 s12">
+						<div class="card">
+				            <div class="card-image">
+				              <img src="img/models/3.jpg">
+				              <span class="card-title">That I am God</span>
+				            </div>					            
+				            <div class="card-content">
+					            <a class="soc_ion">l</a>
+					            <a class="soc_ion">f</a>	 
+					            <a class="right" style="font-size: 3rem;margin: 0px;"><i class="mdi-action-add-shopping-cart green-text"></i></a>
+				            </div>           
+				        </div>
+					</div>
+					<div class="col l4 m6 s12">
+						<div class="card">
+				            <div class="card-image">
+				              <img src="img/models/5.jpg">
+				              <span class="card-title">Be Transformed </span>
+				            </div>					            
+				            <div class="card-content">
+					            <a class="soc_ion">l</a>
+					            <a class="soc_ion">f</a>
+					            <a class="right" style="font-size: 3rem;margin: 0px;"><i class="mdi-action-add-shopping-cart green-text"></i></a>
+				            </div>           
+				        </div>
+					</div>
+				</div>
+				<div class="center"><a class="waves-effect waves-light btn red">View More</a></div>
+			</div>
+		</div>
+
+		<div class="section">
+			<div class="container">
+				<h5 class="center">What Are People Saying?</h5>
+				<br>
+				<div class="row">
+					<div class="col l4 m6 s12">
+						<div class="row">
+							<div class="col s4">
+								<img src="img/models/3.jpg" style="max-height: 80px;" width="100%" class="right circle">							
+							</div>
+							<div class="col s8">
+								John Kiipo
+								<p class="grey-text text-lighten-1">It is a long established fact that a reader will be distrated by the readable content of a page when looking at its layout.</p>
+							</div>
+						</div>
+					</div>
+					<div class="col l4 m6 s12">
+						<div class="row">
+							<div class="col s4">
+								<img src="img/models/4.jpg" style="border-radius: 50%; max-height: 80px;" width="100%" class="right">							
+							</div>
+							<div class="col s8">
+								Jessica Maaner
+								<p class="grey-text text-lighten-1">It is a long established fact that a reader will be distrated by the readable content of a page when looking at its layout.</p>
+							</div>
+						</div>
+					</div>
+					<div class="col l4 m6 s12">
+						<div class="row">
+							<div class="col s4">
+								<img src="img/models/5.jpg" style="border-radius: 50%; max-height: 80px;" width="100%" class=" right">							
+							</div>
+							<div class="col s8">
+								Kevin Lonti
+								<p class="grey-text text-lighten-1">It is a long established fact that a reader will be distrated by the readable content of a page when looking at its layout.</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	    
+	    <div class="section  grey lighten-4">
+	    	<div class="container center">
+	    		<p class="grey-text">It is a long established fact that a reader will be distrated by the readable content of a page when looking at its layout. Create, cutomize and order you own designed T-Shirt for the all in the comfort of your room.<a> BECOME A VOLUNTEER</a></p>
+	    		<a class="waves-effect waves-light btn white blue-text rounded">Donate Now!</a>
+	    	</div>
+	    	<br><br>
+	    </div>
+
+	    <div class="section" id="contact_us">
+	    	<div class="container">
+	    	<br>
+	    		<h5 class="center">Contact Us</h5>
+	    		<div class="row">
+	    			<div class="col l8 m12 s12">
+	    				<div class="row">
+	    					<div class="input-field col s6">
+						      <input id="name2" type="text" class="validate">
+						      <label class="active" for="name2">Name</label>
+						    </div>
+						    <div class="input-field col s6">
+						      <input id="email2" type="text" class="validate">
+						      <label class="active" for="email2">Email</label>
+						    </div>
+						    <div class="input-field col s12">
+					          <textarea id="textarea1" class="materialize-textarea"></textarea>
+					          <label for="textarea1">Message</label>
+					        </div>
+	    				</div>
+					    <div class="center"><a class="waves-effect waves-light btn blue rounded">Send</a></div>
 					    <br><br>
-					    	<p class="grey-text text-lighten-1">Need help? Call +233 2738197373</p>
-					    </div>
+	    			</div>
+	    			<div class="col l4 m12 s12" style="padding-left: 10%;">
+	    			LogicGhana
+	    			<p class="grey-text text-lighten-1">Bomso Hse. 45</p>
+	    			<p class="grey-text text-lighten-1">+233-2738 19737</p>
+	    			<p class="grey-text text-lighten-1">logicghana@gmail.com</p>
+	    			<p class="grey-text text-lighten-1 soc_ion"><span>l</span><span>f</span><span>g</span></p>
 	    			</div>
 	    		</div>
 	    	</div>
 	    </div>
-	<!-- Landing Page -->
-		<div id="landing_page">
-			<nav class="transparent" style="box-shadow: none; position: absolute;">
-			    <div class="nav-wrapper transparent">
-			      <a onclick="go_to('home')" class="logo"><img src="img/icon.png">Logic</a>
-			      <ul id="nav-mobile" class="right hide-on-small-only">
-		        	<li><a onclick="go_to('look_book')">LookBook</a></li>
-		        	<li><a onclick="go_to('givers')">Logic Givers</a></li>
-		        	<li><a onclick="go_to('about_us')">About us</a></li>
-		        	<li><a onclick="go_to('contact_us')">Contact Us</a></li>
-			        <li><a onclick="open_this('login_page')">Login / Register</a></li>
-			      </ul>
-			      <a data-activates="slide-out" class="hide-on-med-and-up button-collapse left" style="margin-right: 20px;"><i class="mdi-navigation-menu"></i></a>
-			      <ul id="slide-out" class="side-nav">
-				    <li><a onclick="go_to('look_book')">LookBook</a></li>
-		        	<li><a onclick="go_to('givers')">Logic Givers</a></li>
-		        	<li><a onclick="go_to('about_us')">About us</a></li>
-		        	<li><a onclick="go_to('contact_us')">Contact Us</a></li>
-			        <li><a>Log in / Sign Up</a></li>
-				  </ul>
-			    </div>
-			</nav>
 
-			<div class="section landing_page_top" id="home">
-				<div class="container center">
-					<h3 class="white-text" style="margin-top: 30%;">You Design, We Deleiver</h3>
-					<br class="hide-on-small-only">
-					<h6 class="grey-text text-lighten-1">Create, cutomize and order you own designed T-Shirt for the all in the comfort of your room.</h6>
-					<br>
-					<a class="waves-effect waves-light btn red" href="cmise.html">Start Customizing</a>
-				</div>
-			</div>
-
-			<div class="section">
-				<div class="container center">
-					<h5>Start Customizing T-shirt in Seconds</h5>
-					<p class="grey-text text-lighten-1">It is a long established fact that a reader will be distrated by the readable content of a page when looking at its layout. Create, cutomize and order you own designed T-Shirt for the all in the comfort of your room.</p>
-					<br>
-					<a class="waves-effect waves-light btn red" href="cmise.html">Customizing a T-Shirt Now</a>
-					<br><br><br><br>
-				</div>
-			</div>
-
-			<div class="section grey lighten-4">
-				<div class="container center">
-					<h5>What Are You Getting</h5>
-					<br><br>
-					<div class="row">
-						<div class="col l4 m6 s12">
-							<div class="row no-padding">
-								<div class="col s4 no-padding"><i class="medium mdi-image-palette no-padding blue-text right" style="line-height: 4rem;"></i></div>
-								<div class="col s8 no-padding left"><h6 style="text-align: left; font-size: 1.2rem;">Easy To Customize And Design</h6></div>
-							</div>
-							<p class="grey-text text-lighten-1">It is a long established fact tahta a reader will be distrated by the readable content of a page when looking at its layout.</p>
-						</div>
-						<div class="col l4 m6 s12">
-							<div class="row no-padding">
-								<div class="col s4 no-padding"><i class="medium mdi-maps-directions-car no-padding blue-text right" style="line-height: 4rem;"></i></div>
-								<div class="col s8 no-padding left"><h6 style="text-align: left; font-size: 1.2rem;">Fast Delivery To Your Doorstep</h6></div>
-							</div>
-							<p class="grey-text text-lighten-1">It is a long established fact tahta a reader will be distrated by the readable content of a page when looking at its layout.</p>
-						</div>
-						<div class="col l4 m6 s12">
-							<div class="row no-padding">
-								<div class="col s4 no-padding"><i class="medium mdi-social-share no-padding blue-text right" style="line-height: 4rem;"></i></div>
-								<div class="col s8 no-padding left"><h6 style="text-align: left; font-size: 1.2rem;">Share With Friends</h6></div>
-							</div>
-							<p class="grey-text text-lighten-1">It is a long established fact tahta a reader will be distrated by the readable content of a page when looking at its layout.</p>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="section grey lighten-4" id="about_us">
-				<div class="container">
-					<h5 class="center">About Us</h5>
-					<br><br>
-					<div class="row">
-						<div class="col l8 m8 s12 left">
-						<h7 class="header left">Who are we?</h7>
-						<p class="grey-text text-lighten-1 left">It is a long established fact tahta a reader will be distrated by the readable content of a page when looking at its layout. It is a long established fact tahta a reader will be distrated by the readable content of a page when looking at its layout.</p>
-						</div>
-						<div class="col l4 m4 s12">
-							<img src="img/2.png" width="100%">
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="section" id="look_book">
-				<div class="container">
-					<h5 class="center">Look Book</h5>
-					<div class="row">
-						<div class="col l4 m6 s12">
-							<div class="card">
-					            <div class="card-image">
-					              <img src="img/models/4.jpg">
-					              <span class="card-title">Social Hazard</span>
-					            </div>
-					            <div class="card-content">
-						            <a class="soc_ion">l</a>
-						            <a class="soc_ion">f</a>
-						            <a class="right" style="font-size: 3rem;margin: 0px;"><i class="mdi-action-add-shopping-cart green-text"></i></a>	 
-					            </div>           
-					        </div>
-						</div>
-						<div class="col l4 m6 s12">
-							<div class="card">
-					            <div class="card-image">
-					              <img src="img/models/3.jpg">
-					              <span class="card-title">That I am God</span>
-					            </div>					            
-					            <div class="card-content">
-						            <a class="soc_ion">l</a>
-						            <a class="soc_ion">f</a>	 
-						            <a class="right" style="font-size: 3rem;margin: 0px;"><i class="mdi-action-add-shopping-cart green-text"></i></a>
-					            </div>           
-					        </div>
-						</div>
-						<div class="col l4 m6 s12">
-							<div class="card">
-					            <div class="card-image">
-					              <img src="img/models/5.jpg">
-					              <span class="card-title">Be Transformed </span>
-					            </div>					            
-					            <div class="card-content">
-						            <a class="soc_ion">l</a>
-						            <a class="soc_ion">f</a>
-						            <a class="right" style="font-size: 3rem;margin: 0px;"><i class="mdi-action-add-shopping-cart green-text"></i></a>
-					            </div>           
-					        </div>
-						</div>
-					</div>
-					<div class="center"><a class="waves-effect waves-light btn red">View More</a></div>
-				</div>
-			</div>
-
-			<div class="section">
-				<div class="container">
-					<h5 class="center">What Are People Saying?</h5>
-					<div class="row">
-						<div class="col l4 m6 s12">
-							<div class="row">
-								<div class="col s4">
-									<img src="img/models/3.jpg" style="border-radius: 50%; max-height: 80px;" width="100%" class="right">							
-								</div>
-								<div class="col s8">
-									John Kiipo
-									<p class="grey-text text-lighten-1">It is a long established fact that a reader will be distrated by the readable content of a page when looking at its layout.</p>
-								</div>
-							</div>
-						</div>
-						<div class="col l4 m6 s12">
-							<div class="row">
-								<div class="col s4">
-									<img src="img/models/4.jpg" style="border-radius: 50%; max-height: 80px;" width="100%" class="right">							
-								</div>
-								<div class="col s8">
-									Jessica Maaner
-									<p class="grey-text text-lighten-1">It is a long established fact that a reader will be distrated by the readable content of a page when looking at its layout.</p>
-								</div>
-							</div>
-						</div>
-						<div class="col l4 m6 s12">
-							<div class="row">
-								<div class="col s4">
-									<img src="img/models/5.jpg" style="border-radius: 50%; max-height: 80px;" width="100%" class=" right">							
-								</div>
-								<div class="col s8">
-									Kevin Lonti
-									<p class="grey-text text-lighten-1">It is a long established fact that a reader will be distrated by the readable content of a page when looking at its layout.</p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-
-		    <div class="parallax-container" style="height: 70vh" id="givers">
-		    	<div class="parallax"><img src="img/6.jpg"></div>
-		    </div>
-		    <div class="section  grey lighten-4">
-		    	<div class="container center">
-		    		<p class="grey-text">It is a long established fact that a reader will be distrated by the readable content of a page when looking at its layout. Create, cutomize and order you own designed T-Shirt for the all in the comfort of your room.<a> BECOME A VOLUNTEER</a></p>
-		    		<a class="waves-effect waves-light btn white blue-text rounded">Donate Now!</a>
-		    	</div>
-		    	<br><br>
-		    </div>
-
-		    <div class="section" id="contact_us">
-		    	<div class="container">
-		    	<br>
-		    		<h5 class="center">Contact Us</h5>
-		    		<div class="row">
-		    			<div class="col l8 m12 s12">
-		    				<div class="row">
-		    					<div class="input-field col s6">
-							      <input id="name2" type="text" class="validate">
-							      <label class="active" for="name2">Name</label>
-							    </div>
-							    <div class="input-field col s6">
-							      <input id="email2" type="text" class="validate">
-							      <label class="active" for="email2">Email</label>
-							    </div>
-							    <div class="input-field col s12">
-						          <textarea id="textarea1" class="materialize-textarea"></textarea>
-						          <label for="textarea1">Message</label>
-						        </div>
-		    				</div>
-						    <div class="center"><a class="waves-effect waves-light btn blue rounded">Send</a></div>
-						    <br><br>
-		    			</div>
-		    			<div class="col l4 m12 s12" style="padding-left: 10%;">
-		    			LogicGhana
-		    			<p class="grey-text text-lighten-1">Bomso Hse. 45</p>
-		    			<p class="grey-text text-lighten-1">+233-2738 19737</p>
-		    			<p class="grey-text text-lighten-1">logicghana@gmail.com</p>
-		    			<p class="grey-text text-lighten-1 soc_ion"><span>l</span><span>f</span><span>g</span></p>
-		    			</div>
-		    		</div>
-		    	</div>
-		    </div>
-
-		    <div class="section grey darken-3 white-text" id="footer">
-		    	<div class="container">
-		    	<br>
-		    		<h5 class="white-text center">Start Customizing In Seconds</h5>
-		    		<br><br>
-		    		<div class="center"><a class="waves-effect waves-light btn red" href="cmise.html">Customize a T-shirt Now</a></div>
-		    		<br><br>
-		    		<div class="row grey-text">
-		    			<div class="col l3 m4 s6">
-		    				<p class="white-text text-darken-2">About</p>
-		    				Logic <br>
-		    				Logic Givers <br>
-		    				Blog and Press <br>
-		    			</div>
-		    			<div class="col l3 m4 s6">
-		    				<p class="white-text text-darken-2">Support</p>
-		    				Support Center <br>
-		    				Contact US
-		    			</div>
-		    			<div class="col l3 m4 s6">
-		    				<p class="white-text text-darken-2">Social</p>
-		    				Twitter<br>
-		    				Facebook<br>
-		    				Instagram
-		    			</div>
-		    			<div class="col l3 m4 s6">
-		    				<p class="white-text text-darken-2">Logic Ghana Ltd.</p>
-		    				P.O. Box 2345<br>
-		    				Bomso, Kumasi<br>
-		    				Ghana, West Africa</p>
-		    			</div>
-		    		</div>
-		    		<p class="center"><sup>2015 &copy; Logic Ghana Limited</sup></p>
-		    	</div>
-		    </div>
-	  		<a class="btn-floating btn-large waves-effect waves-light transparent" style="position: fixed; bottom: 10px; right: 10px;" onclick="go_to('home')"><i class="up_ic mdi-hardware-keyboard-backspace black-text"></i></a>
-    	</div>    
+	    <div class="section grey darken-3 white-text" id="footer">
+	    	<div class="container">
+	    	<br>
+	    		<h5 class="white-text center">Start Customizing In Seconds</h5>
+	    		<br><br>
+	    		<div class="center"><a class="waves-effect waves-light btn red" href="cmise.html#desn_studio">Customize a T-shirt Now</a></div>
+	    		<br><br>
+	    		<div class="row grey-text">
+	    			<div class="col l3 m4 s6">
+	    				<p class="white-text text-darken-2">About</p>
+	    				Logic <br>
+	    				Logic Givers <br>
+	    				Blog and Press <br>
+	    			</div>
+	    			<div class="col l3 m4 s6">
+	    				<p class="white-text text-darken-2">Support</p>
+	    				Support Center <br>
+	    				Contact US
+	    			</div>
+	    			<div class="col l3 m4 s6">
+	    				<p class="white-text text-darken-2">Social</p>
+	    				Twitter<br>
+	    				Facebook<br>
+	    				Instagram
+	    			</div>
+	    			<div class="col l3 m4 s6">
+	    				<p class="white-text text-darken-2">Logic Ghana Ltd.</p>
+	    				P.O. Box 2345<br>
+	    				Bomso, Kumasi<br>
+	    				Ghana, West Africa</p>
+	    			</div>
+	    		</div>
+	    		<p class="center"><sup>2015 &copy; Logic Ghana Limited</sup></p>
+	    	</div>
+	    </div>
+  		<a class="btn-floating btn-large waves-effect waves-light transparent" style="position: fixed; bottom: 10px; right: 10px;" onclick="go_to('home');close_back();"><i class="up_ic mdi-hardware-keyboard-backspace black-text"></i></a>
     </body>
 </html>

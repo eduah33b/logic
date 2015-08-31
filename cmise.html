@@ -4,12 +4,14 @@
     	<title>Logix Mass customisation</title>
 		<!--Import materialize.css-->
 		<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-		<link type="text/css" rel="stylesheet" href="css/spec.css"  media="screen,projection"/>
+		<link type="text/css" rel="stylesheet" href="css/general.css"  media="screen,projection"/>
+		<link type="text/css" rel="stylesheet" href="css/cmise.css"  media="screen,projection"/>
 
 		<!--Import jQuery before materialize.js-->
 		<script type="text/javascript" src="js/jquery.min.js"></script>
 		<script type="text/javascript" src="js/materialize.min.js"></script>
-		<script type="text/javascript" src="js/spec.js"></script>
+		<script type="text/javascript" src="js/general.js"></script>
+		<script type="text/javascript" src="js/cmise.js"></script>
 
 		<!--Let browser know website is optimized for mobile-->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
@@ -18,112 +20,355 @@
 	    <div class="navbar-fixed">
 	    	<nav class="white">
 	    		<div class="nav-wrapper">
-	      			<a href="#" data-activates="side_bar" class="button-collapse left blue-text" style="margin-left: 20px;"><i class="mdi-navigation-menu"></i></a>
-	      			<a onclick="go_to('home')" class="logo hide-on-med-and-down"><img src="img/icon.png">Logic Studio</a>
+	      			<a href="#" data-activates="side_bar" class="button-collapse left black-text show-on-large" style="margin-left: 20px;"><i class="mdi-navigation-menu"></i></a>
+	      			<a class="logo hide-on-small-only"><img src="img/icon.png">Logic</a>
 	      			<ul class="right desn_bar">
-	      				<li class="black-text"><i class="blue-text mdi-content-save center"></i></li>
-	        			<li class="black-text hide-on-small-only"><i class="blue-text mdi-social-person-outline left"></i>Emmanuel Duah</li>
-	        			<li><a href="index.html"><i class="red-text mdi-action-settings-power"></i></a></li>
+	        			<li class="black-text truncate" id="nav_fname" onclick="if(check_nav('acc_profile')) get_wish_list();"><img src="img/2.jpg" class="circle" style="height: 50px; width: 50px; float: left; margin: 4px;">Hi, <span>Anonymous</span></li>
+	        			<li><a href="index.html"><i class="black-text mdi-navigation-close"></i></a></li>
 				    </ul>
-	      			<ul class="side-nav fixed center" id="side_bar" style="background: #5fa5d9;">
-	      				<li style="padding-bottom: 30px"><i class="mdi-navigation-menu"></i></li>      				
-	        			<li>
+	      			<ul class="side-nav fixed center grey darken-4" id="side_bar">
+	      				<li style="padding-bottom: 30px"><i class="mdi-navigation-menu"></i></li>
+	      				<li onclick="open_this('desn_studio')">
+	        				<i class="mdi-content-create white-text" style="margin-bottom: -35px;"></i>
+	        				<span>Create</span>
+	        			</li>      				
+	        			<li onclick="if(check_nav('acc_profile')) get_wish_list();">
 	        				<i class="mdi-action-account-circle white-text" style="margin-bottom: -35px;"></i>
 	        				<span>Profile</span>
 	        			</li>
-	        			<li>
-	        				<i class="mdi-action-add-shopping-cart white-text" style="margin-bottom: -35px;"></i>
-	        				<span>Order</span>
-	        			</li>
-	        			<li>
-	        				<i class="mdi-content-save white-text" style="margin-bottom: -35px;"></i>
-	        				<span>Save</span>
-	        			</li>
-	        			<li>
-	        				<i class="mdi-social-share white-text" style="margin-bottom: -35px;"></i>
-	        				<span>Share</span>
-	        			</li>
+	        			<li onclick="if(check_nav('order_tracking')) get_orders();">
+	        				<i class="mdi-action-shopping-cart white-text" style="margin-bottom: -35px;"></i>
+	        				<span>Orders</span>
+	        			</li>	        			
 				    </ul>
 	    		</div>
 	  		</nav>
 		</div>
-  		<div class="section">
-  			<div class="row">
-  				<div class="col l9 m6 s12 play_bd"  style="position: relative; overflow: hidden;">
-  					<div class="canv_item center">
-  						<img src="img/products/12.jpg">
-  						<img src="img/products/12.png">
-  					</div>
-  					<div class="brush_on">
-  						<div class="desn_contner"></div>
-  					</div>
-  					<br>
-  					<div class="canv_item_list center">
-  						<div>
-  							<img src="img/products/12.jpg">
-  							<img src="img/products/12.png">
-  						</div>
-  						<div>
-  							<img src="img/products/11.jpg">
-  							<img src="img/products/11.png">
-  						</div>
-  					</div>
-  				</div>
-  				<div class="col l3 m6 s12">
-  					<br><br>
-			    	<div class="col s12" style="padding: 0px;">
-			      		<ul class="tabs">
-			        		<li class="tab col s6"><a href="#ep1">Edit Product</a></li>
-					        <li class="tab col s6"><a href="#ep2">Designs</a></li>
-			      		</ul>
-			    	</div>
-			    	<div id="ep1" class="col s12 white">
-				    	<br>
-				    	<br>
-			    		<a class="btn-flat blue darken-1 white-text">Change product color</a>
-			    		<div class="col_pal">
-			    			<div class="red"></div>
-			      			<div class="pink"></div>
-			      			<div class="blue"></div>
-			      			<div class="green"></div>
-			      			<div class="orange"></div>
-			      			<div class="white"></div>
-			      			<div class="yellow"></div>
-			      			<div class="indigo"></div>
-			      			<div class="purple"></div>
-			      			<div class="cyan"></div>
-			      			<div class="black"></div>
-			      			<div class="lime"></div>
-			      			<div class="brown"></div>
-			    		</div>
-			    	</div>
-			    	<div id="ep2" class="col s12 white">
-			    		<div class="desn_list">
-			    			<div></div>
-			    			<div></div>
-			    			<div></div>
-			    			<div></div>
-			    		</div>
-			    		<br>
-			    		<a class="btn-flat darken-1 grey-text text-darken-2"><i class="mdi-image-palette grey-text text-darken-2 left"></i>Design Colors</a>
-			    		<div class="col_pal" style="padding-top: 0px;">
-			    			<div class="red"></div>
-			      			<div class="pink"></div>
-			      			<div class="blue"></div>
-			      			<div class="green"></div>
-			      			<div class="orange"></div>
-			      			<div class"white"></div>
-			      			<div class="yellow"></div>
-			      			<div class="indigo"></div>
-			      			<div class="purple"></div>
-			      			<div class="cyan"></div>
-			      			<div class="black"></div>
-			      			<div class="lime"></div>
-			      			<div class="brown"></div>
-			    		</div>
-			    	</div>				        				
-  				</div>
-  			</div>
-  		</div>
+		<!-- Dynamic PAges -->
+		<div class="dy_pages">
+	    	<div class="section white  dy_page" id="login_page">
+	    		<div class="section col l12 m6 s12" style="padding-left: 20px; padding-right: 20px;">
+	    			<a onclick="open_this('register_page')" class="waves-effect waves-blue btn transparent black-text rounded right" style="">Register</a>
+  					<h4 class="flow-text">Login</h4> 
+  					<hr class="white-text">
+  					<div class="container">			    			
+		    			<div class="row">
+		    				<div class="input-field col s12">
+		    					<i class="mdi-action-perm-identity prefix"></i>
+						      	<input id="email" type="email" class="validate" er-msg="Please enter a valid email address">
+						      	<label for="email">Your Email</label>
+						    </div>
+						    <div class="input-field col s12">
+		    					<i class="mdi-action-lock-outline prefix"></i>
+						      	<input id="pword" type="password" autocomplete="off" class="validate" er-msg="Please enter a valid pass phrase" value="939bb44b">
+						      	<label for="pword">Pass Phrase</label>
+						    </div>
+						    <div class="col l7 m6 s12 center">
+						    	<br>
+						    	<a>Forgot your password?</a>
+						    	<br><br>
+						    	<a onclick="open_this('register_page')">I do not have an account.</a>
+						    </div>
+						    <div class="col l5 m6 s12 center">
+						    <br>
+						    	<a class="waves-effect waves-green btn white blue-text rounded" onclick="validate_log_in()">Login</a>
+						    </div>
+		    			</div>
+		    		</div>
+	    		</div>
+	    	</div>
+
+	    	<div class="section white dy_page" id="register_page">
+	    		<div class="section col l12 m6 s12" style="padding-left: 20px; padding-right: 20px;">
+	    			<a onclick="open_this('login_page')" class="waves-effect waves-yellow btn transparent black-text rounded right" style="">Back to login page</a>
+  					<h4 class="flow-text">Registration Form</h4> 
+  					<hr class="white-text">
+  					<div class="container">			
+		    			<div class="row">
+		    				<div class="col l8 m6 s12">
+			    				<div class="input-field col l6 m6 s12">
+							      	<input id="fname" type="text" autocomplete="off" class="validate" er-msg="Please enter a first name" autocomplete="off">
+							      	<label for="fname">First Name</label>
+							    </div>
+							    <div class="input-field col l6 m6 s12">	    					
+							      	<input id="lname" type="text" autocomplete="off" class="validate" er-msg="Please enter a last name" >
+							      	<label for="lname">Last Name</label>
+							    </div>						    
+							    <div class="input-field col l6 m6 s12">	    					
+							      	<input id="city" type="text" autocomplete="off" class="validate" er-msg="Please enter your city" >
+							      	<label for="city">Location (City)</label>
+							    </div>
+							    <div class="input-field col l6 m6 s12">
+							      	<input id="rphnum" type="text" autocomplete="off" class="validate" er-msg="Please enter a phone number" >
+							      	<label for="rphnum">Phone Number</label>
+							    </div>
+							    <div class="input-field col l12 m12 s12">	    					
+							      	<input id="remail" type="email" autocomplete="off" class="validate" er-msg="Please enter a corect email address" >
+							      	<label for="remail">Email</label>
+							    </div>
+							</div>
+							<div class="col l4 m6 s12">
+								<div class="input-field col s12">
+								    <textarea id="addr" class="materialize-textarea"  autocomplete="off" er-msg="Please enter an address for delivery"></textarea>
+		          					<label for="addr">Your Address (for home delivery)</label>
+							    </div>	
+							</div>
+						</div>
+					</div>
+					<div class="row">
+					    <div class="col l8 m6 s12 center">
+					    	<p>
+						      	<input type="checkbox" id="agree"  autocomplete="off"/>
+						      	<label for="agree">I agree to Logic's <a href="./" target="_blank">Terms and Conditions</a> of service</label>
+						    </p>
+					    </div>
+					    <div class="col l4 m6 s12 center">
+					    <br><br>
+					    	<a class="waves-effect waves-green btn btn-large white blue-text rounded" onclick="validate_reg_data()">Create Account</a>
+					    </div>
+
+					    <div class="col l12 m12 s12 center">
+					    <br><br>
+					    	<p class="grey-text text-lighten-1">Need help? Call +233 2738197373</p>
+					    </div>
+	    			</div>
+	    		</div>
+	    	</div>
+
+	  		<div class="section dy_page" id="desn_studio" >
+	  			<div class="row">
+	  				<div class="col l8 m6 s12 play_bd"  style="position: relative; overflow: hidden;">
+	  					<div class="canv_item center" prod-id="1" gender="F" prod-price="20">
+	  						<img src="img/products/F/1.jpg">
+	  						<img src="img/products/F/1.png">
+	  					</div>
+	  					<div class="brush_on">
+	  					<a class="btn btn-flat black-text waves-effect waves-blue dsn_share" id="edit_dsn" style="bottom:20px;left:10px;" href="http://localhost/!/logicgh/cmise.html#desn_studio?prod_id=1&prod_cl=rgba(255, 255, 255, 0.65)&prod_gen=F&dsn_id=2&dsn_col=0&prod_price=20&dsn_price=15" title="Sharing Link" target="_blank"><i class="mdi-social-share green-text"></i></a>
+	  						<div class="desn_contner" dsn-id="" dsn-col="0" dsn-price=""></div>
+	  					</div>
+
+	  						<a class="btn btn-flat black-text waves-effect waves-blue hide-on-med-and-up" id="edit_dsn" style="top:20px;right:10px;" onclick="go_to('edit_panel');"><i class="mdi-navigation-menu black-text left"></i>Edit</a>
+	  				</div>
+	  				<div class="col l4 m6 s12" id="edit_panel">
+	  					<br><br>
+				    	<div class="col s12" style="padding: 0px;">
+				      		<ul class="tabs">
+				        		<li class="tab col s6"><a href="#ep1">Edit Shirt</a></li>
+						        <li class="tab col s6"><a href="#ep2">Edit Design</a></li>
+				      		</ul>
+				    	</div>
+				    	<div id="ep1" class="col s12 white">
+					    	<br>
+					    	<br>
+				    		<a class="btn-flat grey-text text-darken-2"><i class="mdi-image-palette grey-text text-darken-2 left"></i>Shirt Colors</a>
+				    		<div class="col_pal">
+				    			<div class="black" nth="0"></div>
+				      			<div class="pink" nth="1"></div>
+				      			<div class="blue" nth="2"></div>
+				      			<div class="green" nth="3"></div>
+				      			<div class="orange" nth="4"></div>
+				      			<div class="white" nth="5"></div>
+				      			<div class="yellow" nth="6"></div>
+				      			<div class="indigo" nth="7"></div>
+				      			<div class="purple" nth="8"></div>
+				      			<div class="red" nth="9"></div>
+				      			<div class="cyan" nth="10"></div>
+				      			<div class="lime" nth="11"></div>
+				      			<div class="brown" nth="12"></div>
+				    		</div>
+				    		<br>
+				    		<div class="col s12" style="padding-top: 10px; padding-bottom: 10px;">
+				    			<p  id="gend_select">
+					    			<a class="btn white black-text" onclick="prod_gen_ch(this)" id="F">F</a>
+					    			<a class="btn white black-text btn-flat" onclick="prod_gen_ch(this)" id="M">M</a>
+				    			</p>
+				    			
+				    		</div>
+				    	</div>
+				    	<div id="ep2" class="col s12 white">
+				    		<div class="desn_list"></div>
+				    		<br>
+				    		<a class="btn-flat grey-text text-darken-2"><i class="mdi-image-palette grey-text text-darken-2 left"></i>Design Colors</a>
+				    		<div class="col_pal">
+				    			<div class="black" nth="0"></div>
+				      			<div class="pink" nth="1"></div>
+				      			<div class="blue" nth="2"></div>
+				      			<div class="green" nth="3"></div>
+				      			<div class="orange" nth="4"></div>
+				      			<div class="white" nth="5"></div>
+				      			<div class="yellow" nth="6"></div>
+				      			<div class="indigo" nth="7"></div>
+				      			<div class="purple" nth="8"></div>
+				      			<div class="red" nth="9"></div>
+				      			<div class="cyan" nth="10"></div>
+				      			<div class="lime" nth="11"></div>
+				      			<div class="brown" nth="12"></div>
+				    		</div>
+				    	</div>				        				
+	  				</div>
+	  				<div class="col l4 m6 s12 center-align" >
+	  					<a class="btn red" style="margin-top: 20px;" onclick="buy_now()"><i class="mdi-action-add-shopping-cart left"></i>Buy Now</a>
+	  					<a class="btn blue" style="margin-top: 20px;" onclick="add_wish()"><i class="mdi-action-shopping-basket left"></i>Add to Wishlist</a>
+	  				</div>
+	  			</div>
+	  		</div>
+
+	  		<div class="section white dy_page" id="acc_profile">
+	  			<div class="row">
+	  				<div class="col s12 ">
+	  					<a class="right" onclick="enable_edit()">Edit Profile</a>
+	  					<br>
+	  					<br>
+	  				</div>
+	  				<div class="col l2 m4 hide-on-small-only center" style="overflow: hidden;">
+	  					<img src="img/2.jpg" class="circle" style="height: 150px; width: 150px">
+	  				</div>
+	  				<div class="col l4 m8 s12">
+	  					<div class="grey-text text-darken-2 col s4 user_data_label">
+	  						Full name: 
+	  					</div>
+	  					<input type="text" class="validate col s8" disabled autocomplete="off" id="full_name" onchange="edit_u_data(this.value, 'fname lname')">
+
+	  					<div class="grey-text text-darken-2 col s4 user_data_label">
+	  						Email: 
+	  					</div>
+	  					<input type="text" class="validate col s8" disabled autocomplete="off" id="email" onchange="edit_u_data(this.value, 'email')">
+
+	  					<div class="grey-text text-darken-2 col s4 user_data_label">
+	  						Location: 
+	  					</div>
+	  					<input type="text" class="validate col s8" disabled autocomplete="off" id="city" onchange="edit_u_data(this.value,'city')">
+
+	  					<div class="grey-text text-darken-2 col s4 user_data_label">
+	  						Phone number: 
+	  					</div>
+	  					<input type="text" class="validate col s8" disabled autocomplete="off" id="phnum" onchange="edit_u_data(this.value, 'phone_number')">
+	  				</div>
+	  				<div class="col l5 m12 s12 right">
+	  					<div class="col l4 m3 s4 grey-text text-darken-2 user_data_label">
+	  						Delivery Address:  						
+	  					</div>
+					    <textarea disabled autocomplete="off" id="addrs" class="materialize-textarea col l7 m9 s8" onchange="edit_u_data(this.value, 'address')">
+
+
+					    </textarea>
+	  				</div>
+	  			</div>
+				<div style="padding: 20px;"><hr class="white-text" /></div>
+				<div class="row" style="margin-left: 10px;">
+					<div class="col s12">
+						<h5 class="grey-text text-darken-2 flow-text"> Wishlist</h5>
+					</div>
+					<div class="row saved_dsns">
+
+					</div>
+				</div>
+	  		</div>
+
+	  		<div class="section white dy_page" id="order_tracking">
+	  			<div class="row">
+	  				<div class="col s12">
+	  					<p class="flow-text">You have <span class="red-text">0</span> product(s) in your order qeue</p>
+	  					<table class="bordered hoverable responsive-table">
+					        <thead>
+					          	<tr>
+					              	<th>Product</th>
+					              	<th>Unit Price</th>
+					              	<th>Quantity</th>
+					              	<th>Size</th>
+					              	<th>Total</th>
+					              	<th>Date of Order</th>
+					              	<th>Order Status</th>
+					              	<th>Actions</th>
+					          	</tr>
+					        </thead>
+					        <tbody class="order_table">
+					        	<tr><td colspan="8" class="center-align flow-text">No items found :(</td></tr>
+					        </tbody>
+						</table>
+	  				</div>
+	  			</div>
+	  		</div>
+
+	  		<div class="section white dy_page" id="order_checkout">
+	  			<div class="row">
+	  				<div class="col s12">
+	  					<a class="btn rounded white red-text right" onclick="open_this(going_here.back)"><i class="mdi-navigation-arrow-back left red-text"></i>Cancel</a>
+	  				</div>
+	  				<div class="col l12 m6 s12">
+	  					<h4 style="padding: 10px;" class="flow-text">Confirm Order</h4>
+	  					<table class="responsive-table">
+					        <thead>
+					          	<tr>
+					              	<th>Product</th>
+					              	<th>Unit Price</th>
+					              	<th>Quantity</th>
+					              	<th>Size</th>
+					              	<th>Total</th>
+					          	</tr>
+					        </thead>
+					        <tbody class="order_table">
+					        	<tr><td colspan="8" class="center-align flow-text">No items found :(</td></tr>
+					        </tbody>
+						</table>
+	  				</div>
+	  				<div class="section col l12 m6 s12" style="padding-left: 20px; padding-right: 20px;">
+	  					<h4 class="flow-text">Billing info</h4>
+	  					<hr class="white-text">
+	  					<div class="container">			    			
+			    			<div class="row">
+			    				<div class="col l8 m12 s12">
+				    				<div class="input-field col l6 m12 s12">
+								      	<input id="b_fname" type="text" autocomplete="off" class="validate" er-msg="Please enter a first name" autocomplete="off" onchange="edit_u_data(this.value, 'fname')">
+								      	<label for="b_fname">First Name</label>
+								    </div>
+								    <div class="input-field col l6 m12 s12">	    					
+								      	<input id="b_lname" type="text" autocomplete="off" class="validate" er-msg="Please enter a last name" onchange="edit_u_data(this.value, 'lname')">
+								      	<label for="b_lname">Last Name</label>
+								    </div>						    
+								    <div class="input-field col l6 m12 s12">	    					
+								      	<input id="b_city" type="text" autocomplete="off" class="validate" er-msg="Please enter your city" >
+								      	<label for="b_city" onchange="edit_u_data(this.value, 'city')">Location (City)</label>
+								    </div>
+								    <div class="input-field col l6 m12 s12">
+								      	<input id="b_phnum" type="text" autocomplete="off" class="validate" er-msg="Please enter a phone number" onchange="edit_u_data(this.value, 'phone_number')">
+								      	<label for="b_phnum">Phone Number</label>
+								    </div>
+								    <div class="input-field col l12 m12 s12">	    					
+								      	<input id="b_email" type="email" autocomplete="off" class="validate" er-msg="Please enter a corect email address" onchange="edit_u_data(this.value, 'email')">
+								      	<label for="b_email">Email</label>
+								    </div>
+								</div>
+								<div class="col l4 m12 s12">
+									<div class="input-field col s12">
+									    <textarea id="b_addrs" class="materialize-textarea"  autocomplete="off" er-msg="Please enter an address for delivery" onchange="edit_u_data(this.value, 'address')">
+									    	
+
+									    </textarea>
+			          					<label for="b_addrs">Your Address (for home delivery)</label>
+								    </div>	
+								</div>
+							</div>
+						</div>							
+	  				</div>
+	  				<div class="row">
+							    <div class="col l8 m6 s12 center">
+							    	<p>
+								      	<input type="checkbox" id="b_agree" autocomplete="off"/>
+								      	<label for="b_agree">I agree to Logic's <a href="./" target="_blank">Terms and Conditions</a> of service</label>
+								    </p>
+							    </div>
+							    <div class="col l4 m6 s12 center">
+							    	<a class="waves-effect waves-light btn btn-large green white-text rounded" onclick="place_order()">Confirm and Order Now</a>
+							    </div>
+
+							    <div class="col l12 m12 s12 center">
+							    <br><br>
+							    	<p class="grey-text text-lighten-1">Need help? Call +233 2738197373</p>
+							    </div>
+			    			</div>
+	  			</div>
+	  		</div>
+	  	</div>
     </body>
 </html>
