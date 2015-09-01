@@ -27,7 +27,7 @@ $( document ).ready(function(){
 			    	sql_call_back(id);
 			    },
 			    error: function(){
-			    	alert('): Oops!! Error Adding Data To DB');
+			    	Materialize.toast('): Oops!! Error Adding Data To DB', 5000);
 			    }
 			});
 	    }
@@ -41,9 +41,14 @@ $( document ).ready(function(){
 			    	sql_call_back(res);
 			    },
 			    error: function(){
-			    	alert('): Oops!! Error retriving data');
+			    	Materialize.toast('): Oops!! Error retriving data', 5000);
 			    }
 			});
 	    }
 	    get_sql = get_sq_data;
+
+	/* String conversions */
+		String.prototype.toProperCase = function () {
+		    return this.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+		};
 });

@@ -46,9 +46,9 @@
 		</div>
 		<!-- Dynamic PAges -->
 		<div class="dy_pages">
-	    	<div class="section white  dy_page" id="login_page">
+	    	<div class="section dy_page" id="login_page">
 	    		<div class="section col l12 m6 s12" style="padding-left: 20px; padding-right: 20px;">
-	    			<a onclick="open_this('register_page')" class="waves-effect waves-blue btn transparent black-text rounded right" style="">Register</a>
+	    			<a onclick="open_this('register_page')" class="waves-effect waves-blue btn white black-text rounded right" style="">Register</a>
   					<h4 class="flow-text">Login</h4> 
   					<hr class="white-text">
   					<div class="container">			    			
@@ -65,51 +65,51 @@
 						    </div>
 						    <div class="col l7 m6 s12 center">
 						    	<br>
-						    	<a>Forgot your password?</a>
+						    	<a onclick="reset_pass()">Forgot your Pass Phrase?</a>
 						    	<br><br>
 						    	<a onclick="open_this('register_page')">I do not have an account.</a>
 						    </div>
 						    <div class="col l5 m6 s12 center">
 						    <br>
-						    	<a class="waves-effect waves-green btn white blue-text rounded" onclick="validate_log_in()">Login</a>
+						    	<a class="waves-effect waves-green btn white blue-text  btn-large rounded" onclick="validate_log_in()">Log In / Sign In</a>
 						    </div>
 		    			</div>
 		    		</div>
 	    		</div>
 	    	</div>
 
-	    	<div class="section white dy_page" id="register_page">
-	    		<div class="section col l12 m6 s12" style="padding-left: 20px; padding-right: 20px;">
-	    			<a onclick="open_this('login_page')" class="waves-effect waves-yellow btn transparent black-text rounded right" style="">Back to login page</a>
-  					<h4 class="flow-text">Registration Form</h4> 
-  					<hr class="white-text">
-  					<div class="container">			
-		    			<div class="row">
+	    	<div class="section dy_page" id="register_page">
+	    		<div class="row">
+		    		<div class="col s12" style="padding-left: 20px; padding-right: 20px;">
+		    			<a onclick="open_this('login_page')" class="waves-effect waves-yellow btn white black-text rounded right" style="">Back to login page</a>
+	  					<h4 class="flow-text">Registration Form</h4> 
+	  					<hr class="white-text">
+	  					<div class="container">			
 		    				<div class="col l8 m6 s12">
 			    				<div class="input-field col l6 m6 s12">
-							      	<input id="fname" type="text" autocomplete="off" class="validate" er-msg="Please enter a first name" autocomplete="off">
+							      	<input id="fname" type="text" utocomplete="off" class="validate" er-msg="Please enter a first name" autocomplete="off">
 							      	<label for="fname">First Name</label>
 							    </div>
 							    <div class="input-field col l6 m6 s12">	    					
-							      	<input id="lname" type="text" autocomplete="off" class="validate" er-msg="Please enter a last name" >
+							      	<input id="lname" type="text" utocomplete="off" class="validate" er-msg="Please enter a last name" >
 							      	<label for="lname">Last Name</label>
 							    </div>						    
 							    <div class="input-field col l6 m6 s12">	    					
-							      	<input id="city" type="text" autocomplete="off" class="validate" er-msg="Please enter your city" >
+							      	<input id="city" type="text" utocomplete="off" class="validate" er-msg="Please enter your city" >
 							      	<label for="city">Location (City)</label>
 							    </div>
 							    <div class="input-field col l6 m6 s12">
-							      	<input id="rphnum" type="text" autocomplete="off" class="validate" er-msg="Please enter a phone number" >
+							      	<input id="rphnum" type="text" utocomplete="off" class="validate" er-msg="Please enter a phone number" >
 							      	<label for="rphnum">Phone Number</label>
 							    </div>
 							    <div class="input-field col l12 m12 s12">	    					
-							      	<input id="remail" type="email" autocomplete="off" class="validate" er-msg="Please enter a corect email address" >
+							      	<input id="remail" type="email" utocomplete="off" class="validate" er-msg="Please enter a corect email address" >
 							      	<label for="remail">Email</label>
 							    </div>
 							</div>
 							<div class="col l4 m6 s12">
 								<div class="input-field col s12">
-								    <textarea id="addr" class="materialize-textarea"  autocomplete="off" er-msg="Please enter an address for delivery"></textarea>
+								    <textarea id="addr" class="materialize-textarea"  utocomplete="off" er-msg="Please enter an address for delivery"></textarea>
 		          					<label for="addr">Your Address (for home delivery)</label>
 							    </div>	
 							</div>
@@ -216,7 +216,7 @@
 	  		<div class="section white dy_page" id="acc_profile">
 	  			<div class="row">
 	  				<div class="col s12 ">
-	  					<a class="right" onclick="enable_edit()">Edit Profile</a>
+	  				<a class="btn rounded white blue-text right" onclick="enable_edit()"><i class="mdi-action-account-child left blue-text"></i>Edit Profile</a>
 	  					<br>
 	  					<br>
 	  				</div>
@@ -227,28 +227,28 @@
 	  					<div class="grey-text text-darken-2 col s4 user_data_label">
 	  						Full name: 
 	  					</div>
-	  					<input type="text" class="validate col s8" disabled autocomplete="off" id="full_name" onchange="edit_u_data(this.value, 'fname lname')">
+	  					<input type="text" class="validate col s8" disabled autocomplete="off" id="full_name" onchange="edit_u_data(this.value, 'fname lname');update_live_data();">
 
 	  					<div class="grey-text text-darken-2 col s4 user_data_label">
 	  						Email: 
 	  					</div>
-	  					<input type="text" class="validate col s8" disabled autocomplete="off" id="email" onchange="edit_u_data(this.value, 'email')">
+	  					<input type="text" class="validate col s8" disabled autocomplete="off" id="email" onchange="if(val_email.test(this.value)) {edit_u_data(this.value, 'email');update_live_data();}">
 
 	  					<div class="grey-text text-darken-2 col s4 user_data_label">
 	  						Location: 
 	  					</div>
-	  					<input type="text" class="validate col s8" disabled autocomplete="off" id="city" onchange="edit_u_data(this.value,'city')">
+	  					<input type="text" class="validate col s8" disabled autocomplete="off" id="city" onchange="edit_u_data(this.value,'city');update_live_data();">
 
 	  					<div class="grey-text text-darken-2 col s4 user_data_label">
 	  						Phone number: 
 	  					</div>
-	  					<input type="text" class="validate col s8" disabled autocomplete="off" id="phnum" onchange="edit_u_data(this.value, 'phone_number')">
+	  					<input type="text" class="validate col s8" disabled autocomplete="off" id="phnum" onchange="edit_u_data(this.value, 'phone_number');update_live_data();">
 	  				</div>
 	  				<div class="col l5 m12 s12 right">
 	  					<div class="col l4 m3 s4 grey-text text-darken-2 user_data_label">
 	  						Delivery Address:  						
 	  					</div>
-					    <textarea disabled autocomplete="off" id="addrs" class="materialize-textarea col l7 m9 s8" onchange="edit_u_data(this.value, 'address')">
+					    <textarea disabled autocomplete="off" id="addrs" class="materialize-textarea col l7 m9 s8" onchange="edit_u_data(this.value, 'address');update_live_data();">
 
 
 					    </textarea>
@@ -259,7 +259,7 @@
 					<div class="col s12">
 						<h5 class="grey-text text-darken-2 flow-text"> Wishlist</h5>
 					</div>
-					<div class="row saved_dsns">
+					<div class="col s12 saved_dsns">
 
 					</div>
 				</div>
@@ -269,7 +269,7 @@
 	  			<div class="row">
 	  				<div class="col s12">
 	  					<p class="flow-text">You have <span class="red-text">0</span> product(s) in your order qeue</p>
-	  					<table class="bordered hoverable responsive-table">
+	  					<table class="bordered responsive-table">
 					        <thead>
 					          	<tr>
 					              	<th>Product</th>
@@ -282,15 +282,15 @@
 					              	<th>Actions</th>
 					          	</tr>
 					        </thead>
-					        <tbody class="order_table">
-					        	<tr><td colspan="8" class="center-align flow-text">No items found :(</td></tr>
+					        <tbody class="order_table grey lighten-4">
+					        	<tr><td colspan="8" class="center-align flow-text white">No items found :(</td></tr>
 					        </tbody>
 						</table>
 	  				</div>
 	  			</div>
 	  		</div>
 
-	  		<div class="section white dy_page" id="order_checkout">
+	  		<div class="section dy_page" id="order_checkout">
 	  			<div class="row">
 	  				<div class="col s12">
 	  					<a class="btn rounded white red-text right" onclick="open_this(going_here.back)"><i class="mdi-navigation-arrow-back left red-text"></i>Cancel</a>

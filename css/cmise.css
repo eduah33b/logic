@@ -167,7 +167,7 @@
 	.saved_dsns>.col{
 		position: relative !important; 
 		overflow: hidden !important;
-		margin-top: 10px; 
+		margin-top: 10px;
 	}
 	.saved_dsns .canv_item {
 		width: 302px;
