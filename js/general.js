@@ -45,7 +45,7 @@ $( document ).ready(function(){
 			    }
 			});
 	    }
-	    get_sql = get_sq_data;
+	    get_sql = get_sq_data;	    
 
 	/* String conversions */
 		String.prototype.toProperCase = function () {

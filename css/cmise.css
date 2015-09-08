@@ -3,7 +3,7 @@
 	min-height: 90vh;
 }
 #nav_fname {
-	max-width: 150px;
+	max-width: 170px;
 	white-space: nowrap;
 }
 .user_data_label {
@@ -16,6 +16,15 @@
 	position:absolute;
 	z-index:9;
 	background-color: rgba(255, 255, 255, 0.5);
+}
+.drag-target {
+	z-index: 1;
+}
+#dsn_side_bar .col.white, #dsn_side_bar{
+	    background: rgba(0, 0, 0, 0.3) none repeat scroll 0% 0%!important;
+}
+nav ul li:hover {
+	background-color: #fff;
 }
 /* Design nave bar */
 	nav .logo {
@@ -98,24 +107,23 @@
 		height: 120px;
 	}
 	#desn_studio .row {
-		margin-top: 30px;
+		/*margin-top: 30px;*/
 	}
-	#desn_studio .tab a{
+	#dsn_side_bar .tab a, #desn_studio .tab a{
 		background-color: #F5F5F5;
 		color: #a5a5a5 !important;
 	}
-	#desn_studio .tab a.active {
+	#dsn_side_bar .tab a.active, #desn_studio .tab a.active {
 		background-color: #fff;
 		color: #000 !important;
 	}
-	#desn_studio .indicator {
+	#dsn_side_bar .indicator, #desn_studio .indicator {
 		height: 0px !important;
 	}
-	#desn_studio .col_pal {
-		padding: 50px;
-		padding-top: 0px;
+	#dsn_side_bar .col_pal, #desn_studio .col_pal {
+		padding: 0px 5px;
 	}
-	#desn_studio .col_pal>div{
+	#dsn_side_bar .col_pal>div, #desn_studio .col_pal>div{
 		display: inline-table;
 		height: 30px;
 		width: 30px;
@@ -125,13 +133,13 @@
 		margin-right: 7px;
 		margin-bottom: 14px;
 	}
-	#desn_studio .desn_list{
+	#dsn_side_bar .desn_list, #desn_studio .desn_list{
 		padding: 10px;
 		max-height: 247px;
 		overflow-y: scroll;
 		overflow-x: hidden;
 	}
-	#desn_studio .desn_list>div {
+	#dsn_side_bar .desn_list>div, #desn_studio .desn_list>div {
 		width: 70px;
 		height: 70px;
 		margin-left: 7px;
@@ -222,13 +230,13 @@
 		/*margin-top: 10px; */
 	}
 	.order_table .canv_item {
-		width: 151px;
-		height: 200px;
+		width: 75.5px;
+		height: 100px;
 		z-index: 1;
 	}
 	.order_table .canv_item img{
 		position: absolute;
-		width: 151px;
+		width: 75.5px;
 		left: 0px;		
 		background-color: rgba(255, 255, 255, 0.65);
 	}
@@ -236,8 +244,8 @@
 		position: absolute;
 		top: 0px;
 		left: 0px;
-		width: 151px;
-		height: 200px;
+		width: 75.5px;
+		height: 100px;
 		left: 0px;
 		z-index: 9;
 	}
@@ -245,9 +253,8 @@
 		position: absolute;
 		top: 26%;
 		right: 26%;
-		width: 75px;
-		height: 75px;
-		background-size: 375px 150px;
+		width: 37.5px;
+		height: 37.5px;
 		/*border: 1px dashed #b00;*/
 	}
 	.order_table>tr>td>.col .shirt_col_samp {
@@ -266,7 +273,7 @@
 			margin-left: 0px;
 		}
 		table.responsive-table th:first-child {
-			height: 230px;
+			height: 131px;
 		}
 		#order_checkout table.responsive-table th:nth-child(3) {
 			height: 66px;

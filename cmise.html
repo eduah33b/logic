@@ -20,12 +20,13 @@
 	    <div class="navbar-fixed">
 	    	<nav class="white">
 	    		<div class="nav-wrapper">
-	      			<a href="#" data-activates="side_bar" class="button-collapse left black-text show-on-large" style="margin-left: 20px;"><i class="mdi-navigation-menu"></i></a>
-	      			<a class="logo hide-on-small-only"><img src="img/icon.png">Logic</a>
+	      			<a data-activates="side_bar" class="button-collapse left black-text show-on-large" style="margin-left: 20px;"><i class="mdi-navigation-menu"></i></a>
+	      			<a class="logo hide-on-med-and-down"><img src="img/icon.png">Logic</a>
 	      			<ul class="right desn_bar">
-	        			<li class="black-text truncate" id="nav_fname" onclick="if(check_nav('acc_profile')) get_wish_list();"><img src="img/2.jpg" class="circle" style="height: 50px; width: 50px; float: left; margin: 4px;">Hi, <span>Anonymous</span></li>
+	      				<li title="Items in cart"><a class="btn green black-text" onclick="show_cart()"><i class="mdi-action-shopping-basket left" style="font-size: 1.3rem; line-height: 32px;"></i>Checkout <span style="padding-left: 15px;" class="yellow-text" id="cart_count">0</span></a></li>
+	        			<li class="black-text truncate hide-on-small-only" id="nav_fname" onclick="if(check_nav('acc_profile')) get_wish_list();"><img src="img/2.jpg" class="circle" style="height: 50px; width: 50px; float: left; margin: 4px; margin-left:15px;">Hi, <span>Anonymous</span></li>
 	        			<li><a href="index.html"><i class="black-text mdi-navigation-close"></i></a></li>
-				    </ul>
+				    </ul>				    
 	      			<ul class="side-nav fixed center grey darken-4" id="side_bar">
 	      				<li style="padding-bottom: 30px"><i class="mdi-navigation-menu"></i></li>
 	      				<li onclick="open_this('desn_studio')">
@@ -41,44 +42,95 @@
 	        				<span>Orders</span>
 	        			</li>	        			
 				    </ul>
+				    <ul class="side-nav center" id="dsn_side_bar" style="box-shadow: none;">
+						<br>
+				    	<div class="row" style="margin-bottom: 0px;">
+					    	<div id="_ep1" class="col s12 white">
+					    		<a class="btn-flat white-text"><i class="mdi-image-palette white-text left"></i>Shirt Colors</a>
+					    		<div class="col_pal">
+					    			<div class="black"></div>
+					      			<div class="pink"></div>
+					      			<div class="blue"></div>
+					      			<div class="green"></div>
+					      			<div class="orange"></div>
+					      			<div class="white"></div>
+					      			<div class="yellow"></div>
+					      			<div class="indigo"></div>
+					      			<div class="purple"></div>
+					      			<div class="red"></div>
+					      			<div class="cyan"></div>
+					      			<div class="lime"></div>
+					      			<div class="brown"></div>
+					    		</div>
+					    		<div class="col s12" style="padding-top: 10px; padding-bottom: 10px;">
+					    			<p  id="gend_select">
+						    			<a class="btn white black-text" onclick="prod_gen_ch(this)" id="F">F</a>
+						    			<a class="btn white black-text btn-flat" onclick="prod_gen_ch(this)" id="M">M</a>
+					    			</p>					    			
+					    		</div>
+					    	</div>
+					    	<div id="_ep2" class="col s12 white">
+					    		<a class="btn-flat white-text"><i class="mdi-image-palette white-text left"></i>Design Colors</a>
+					    		<div class="col_pal left">
+					    			<div class="black"></div>
+					      			<div class="pink"></div>
+					      			<div class="blue"></div>
+					      			<div class="green"></div>
+					      			<div class="orange"></div>
+					      			<div class="white"></div>
+					      			<div class="yellow"></div>
+					      			<div class="indigo"></div>
+					      			<div class="purple"></div>
+					      			<div class="red"></div>
+					      			<div class="cyan"></div>
+					      			<div class="lime"></div>
+					      			<div class="brown"></div>
+					    		</div>
+					    		<div class="desn_list"></div>					    		
+					    	</div>				        				
+	  					</div>	
+				    </ul>				    
 	    		</div>
 	  		</nav>
 		</div>
 		<!-- Dynamic PAges -->
 		<div class="dy_pages">
-	    	<div class="section dy_page" id="login_page">
+	    	<div class="section white dy_page" id="login_page">
 	    		<div class="section col l12 m6 s12" style="padding-left: 20px; padding-right: 20px;">
 	    			<a onclick="open_this('register_page')" class="waves-effect waves-blue btn white black-text rounded right" style="">Register</a>
   					<h4 class="flow-text">Login</h4> 
   					<hr class="white-text">
   					<div class="container">			    			
 		    			<div class="row">
-		    				<div class="input-field col s12">
-		    					<i class="mdi-action-perm-identity prefix"></i>
-						      	<input id="email" type="email" class="validate" er-msg="Please enter a valid email address">
-						      	<label for="email">Your Email</label>
-						    </div>
-						    <div class="input-field col s12">
-		    					<i class="mdi-action-lock-outline prefix"></i>
-						      	<input id="pword" type="password" autocomplete="off" class="validate" er-msg="Please enter a valid pass phrase" value="939bb44b">
-						      	<label for="pword">Pass Phrase</label>
-						    </div>
-						    <div class="col l7 m6 s12 center">
-						    	<br>
-						    	<a onclick="reset_pass()">Forgot your Pass Phrase?</a>
-						    	<br><br>
-						    	<a onclick="open_this('register_page')">I do not have an account.</a>
+		    				<div class="col l7 m6 s12">
+			    				<div class="input-field col s12">
+			    					<i class="mdi-action-perm-identity prefix"></i>
+							      	<input id="email" type="email" class="validate" er-msg="Please enter a valid email address">
+							      	<label for="email">Your Email</label>
+							    </div>
+							    <div class="input-field col s12">
+			    					<i class="mdi-action-lock-outline prefix"></i>
+							      	<input id="pword" type="password" autocomplete="off" class="validate" er-msg="Please enter a valid pass phrase" value="939bb44b">
+							      	<label for="pword">Pass Phrase</label>
+							    </div>
+							</div>
+						    <div class="col l5 m6 s12 center">
+						    	<a class="waves-effect waves-green btn white blue-text  btn-large rounded" onclick="validate_log_in()">Log In / Sign In</a>
 						    </div>
 						    <div class="col l5 m6 s12 center">
-						    <br>
-						    	<a class="waves-effect waves-green btn white blue-text  btn-large rounded" onclick="validate_log_in()">Log In / Sign In</a>
+						    	<br>
+
+						    	<a onclick="reset_pass()">Forgot your Pass Phrase?</a>
+						    	<br><br>
+
+						    	<a onclick="open_this('register_page')">I do not have an account.</a>
 						    </div>
 		    			</div>
 		    		</div>
 	    		</div>
 	    	</div>
 
-	    	<div class="section dy_page" id="register_page">
+	    	<div class="section white dy_page" id="register_page">
 	    		<div class="row">
 		    		<div class="col s12" style="padding-left: 20px; padding-right: 20px;">
 		    			<a onclick="open_this('login_page')" class="waves-effect waves-yellow btn white black-text rounded right" style="">Back to login page</a>
@@ -138,18 +190,19 @@
 	  		<div class="section dy_page" id="desn_studio" >
 	  			<div class="row">
 	  				<div class="col l8 m6 s12 play_bd"  style="position: relative; overflow: hidden;">
-	  					<div class="canv_item center" prod-id="1" gender="F" prod-price="20">
-	  						<img src="img/products/F/1.jpg">
-	  						<img src="img/products/F/1.png">
+	  					<div class="canv_item center" prod-id="" gender="" prod-price="">
+	  						<img>
+	  						<img>
 	  					</div>
 	  					<div class="brush_on">
-	  					<a class="btn btn-flat black-text waves-effect waves-blue dsn_share" id="edit_dsn" style="bottom:20px;left:10px;" href="http://localhost/!/logicgh/cmise.html#desn_studio?prod_id=1&prod_cl=rgba(255, 255, 255, 0.65)&prod_gen=F&dsn_id=2&dsn_col=0&prod_price=20&dsn_price=15" title="Sharing Link" target="_blank"><i class="mdi-social-share green-text"></i></a>
-	  						<div class="desn_contner" dsn-id="" dsn-col="0" dsn-price=""></div>
+	  						<a class="btn btn-flat black-text waves-effect waves-blue dsn_share" id="edit_dsn" style="bottom:20px;left:10px;" href="cmise.html#desn_studio?prod_id=1&prod_cl=rgba(255, 255, 255, 0.65)&prod_gen=F&dsn_id=2&dsn_col=0&prod_price=20&dsn_price=15" title="Sharing Link" target="_blank"><i class="mdi-social-share green-text"></i></a>
+	  						<div class="desn_contner" dsn-id="" dsn-price=""></div>
 	  					</div>
+	  					<a class="btn btn-flat black-text waves-effect waves-blue hide-on-med-and-up _show_opts" id="edit_dsn" style="top:20px;right:10px;" data-activates="dsn_side_bar"><i class="mdi-navigation-menu black-text left"></i>Edit</a>
 
-	  						<a class="btn btn-flat black-text waves-effect waves-blue hide-on-med-and-up" id="edit_dsn" style="top:20px;right:10px;" onclick="go_to('edit_panel');"><i class="mdi-navigation-menu black-text left"></i>Edit</a>
+	  					<div class="canv_item_list hide"></div>
 	  				</div>
-	  				<div class="col l4 m6 s12" id="edit_panel">
+	  				<div class="col l4 m6 s12 hide-on-small-only" id="edit_panel">
 	  					<br><br>
 				    	<div class="col s12" style="padding: 0px;">
 				      		<ul class="tabs">
@@ -162,19 +215,19 @@
 					    	<br>
 				    		<a class="btn-flat grey-text text-darken-2"><i class="mdi-image-palette grey-text text-darken-2 left"></i>Shirt Colors</a>
 				    		<div class="col_pal">
-				    			<div class="black" nth="0"></div>
-				      			<div class="pink" nth="1"></div>
-				      			<div class="blue" nth="2"></div>
-				      			<div class="green" nth="3"></div>
-				      			<div class="orange" nth="4"></div>
-				      			<div class="white" nth="5"></div>
-				      			<div class="yellow" nth="6"></div>
-				      			<div class="indigo" nth="7"></div>
-				      			<div class="purple" nth="8"></div>
-				      			<div class="red" nth="9"></div>
-				      			<div class="cyan" nth="10"></div>
-				      			<div class="lime" nth="11"></div>
-				      			<div class="brown" nth="12"></div>
+				    			<div class="black"></div>
+				      			<div class="pink"></div>
+				      			<div class="blue"></div>
+				      			<div class="green"></div>
+				      			<div class="orange"></div>
+				      			<div class="white"></div>
+				      			<div class="yellow"></div>
+				      			<div class="indigo"></div>
+				      			<div class="purple"></div>
+				      			<div class="red"></div>
+				      			<div class="cyan"></div>
+				      			<div class="lime"></div>
+				      			<div class="brown"></div>
 				    		</div>
 				    		<br>
 				    		<div class="col s12" style="padding-top: 10px; padding-bottom: 10px;">
@@ -190,25 +243,26 @@
 				    		<br>
 				    		<a class="btn-flat grey-text text-darken-2"><i class="mdi-image-palette grey-text text-darken-2 left"></i>Design Colors</a>
 				    		<div class="col_pal">
-				    			<div class="black" nth="0"></div>
-				      			<div class="pink" nth="1"></div>
-				      			<div class="blue" nth="2"></div>
-				      			<div class="green" nth="3"></div>
-				      			<div class="orange" nth="4"></div>
-				      			<div class="white" nth="5"></div>
-				      			<div class="yellow" nth="6"></div>
-				      			<div class="indigo" nth="7"></div>
-				      			<div class="purple" nth="8"></div>
-				      			<div class="red" nth="9"></div>
-				      			<div class="cyan" nth="10"></div>
-				      			<div class="lime" nth="11"></div>
-				      			<div class="brown" nth="12"></div>
+				    			<div class="black"></div>
+				      			<div class="pink"></div>
+				      			<div class="blue"></div>
+				      			<div class="green"></div>
+				      			<div class="orange"></div>
+				      			<div class="white"></div>
+				      			<div class="yellow"></div>
+				      			<div class="indigo"></div>
+				      			<div class="purple"></div>
+				      			<div class="red"></div>
+				      			<div class="cyan"></div>
+				      			<div class="lime"></div>
+				      			<div class="brown"></div>
 				    		</div>
 				    	</div>				        				
-	  				</div>
-	  				<div class="col l4 m6 s12 center-align" >
-	  					<a class="btn red" style="margin-top: 20px;" onclick="buy_now()"><i class="mdi-action-add-shopping-cart left"></i>Buy Now</a>
-	  					<a class="btn blue" style="margin-top: 20px;" onclick="add_wish()"><i class="mdi-action-shopping-basket left"></i>Add to Wishlist</a>
+	  				</div>	  				
+	  				<div class="col l4 m6 s12 right center-align" >
+	  					<a class="btn white black-text col s5" style="margin-top: 20px;" onclick="add_wish()"><i class="mdi-content-save left"></i>Save</a>
+	  					<a class="btn blue col s6 right" style="margin-top: 20px;" onclick="add_cart()"><i class="mdi-action-shopping-basket left"></i>Add To Cart</a>
+	  					<a class="btn red col s12" style="margin-top: 20px;" onclick="buy_now()"><i class="mdi-action-add-shopping-cart left"></i>Purchase Item Now</a>
 	  				</div>
 	  			</div>
 	  		</div>
@@ -282,7 +336,7 @@
 					              	<th>Actions</th>
 					          	</tr>
 					        </thead>
-					        <tbody class="order_table grey lighten-4">
+					        <tbody class="order_table">
 					        	<tr><td colspan="8" class="center-align flow-text white">No items found :(</td></tr>
 					        </tbody>
 						</table>
@@ -290,7 +344,7 @@
 	  			</div>
 	  		</div>
 
-	  		<div class="section dy_page" id="order_checkout">
+	  		<div class="section white dy_page" id="order_checkout">
 	  			<div class="row">
 	  				<div class="col s12">
 	  					<a class="btn rounded white red-text right" onclick="open_this(going_here.back)"><i class="mdi-navigation-arrow-back left red-text"></i>Cancel</a>
@@ -305,17 +359,19 @@
 					              	<th>Quantity</th>
 					              	<th>Size</th>
 					              	<th>Total</th>
+					              	<th>Actions</th>
 					          	</tr>
 					        </thead>
 					        <tbody class="order_table">
 					        	<tr><td colspan="8" class="center-align flow-text">No items found :(</td></tr>
 					        </tbody>
 						</table>
+						<a class="btn btn-large btn-flat right grey lighten-4 black-text price_total">Total: GH 0</a>
 	  				</div>
 	  				<div class="section col l12 m6 s12" style="padding-left: 20px; padding-right: 20px;">
 	  					<h4 class="flow-text">Billing info</h4>
 	  					<hr class="white-text">
-	  					<div class="container">			    			
+	  					<div class="container billing_reg">			    			
 			    			<div class="row">
 			    				<div class="col l8 m12 s12">
 				    				<div class="input-field col l6 m12 s12">
@@ -335,7 +391,7 @@
 								      	<label for="b_phnum">Phone Number</label>
 								    </div>
 								    <div class="input-field col l12 m12 s12">	    					
-								      	<input id="b_email" type="email" autocomplete="off" class="validate" er-msg="Please enter a corect email address" onchange="edit_u_data(this.value, 'email')">
+								      	<input id="b_email" type="email" autocomplete="off" class="validate" er-msg="Please enter a corect email address" onchange="if(val_email.test(this.value)) {edit_u_data(this.value, 'email')}">
 								      	<label for="b_email">Email</label>
 								    </div>
 								</div>
