@@ -17,15 +17,59 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     </head>
     <body class="grey lighten-4">
+   		<div id="preloader" class="valign-wrapper hide">
+   			<p class="valign truncate">Please Wait<br>Communicating with server<br></p>
+	  		<div class="preloader-wrapper big active valign">
+		      <div class="spinner-layer spinner-blue">
+		        <div class="circle-clipper left">
+		          <div class="circle"></div>
+		        </div><div class="gap-patch">
+		          <div class="circle"></div>
+		        </div><div class="circle-clipper right">
+		          <div class="circle"></div>
+		        </div>
+		      </div>
+
+		      <div class="spinner-layer spinner-red">
+		        <div class="circle-clipper left">
+		          <div class="circle"></div>
+		        </div><div class="gap-patch">
+		          <div class="circle"></div>
+		        </div><div class="circle-clipper right">
+		          <div class="circle"></div>
+		        </div>
+		      </div>
+
+		      <div class="spinner-layer spinner-yellow">
+		        <div class="circle-clipper left">
+		          <div class="circle"></div>
+		        </div><div class="gap-patch">
+		          <div class="circle"></div>
+		        </div><div class="circle-clipper right">
+		          <div class="circle"></div>
+		        </div>
+		      </div>
+
+		      <div class="spinner-layer spinner-green">
+		        <div class="circle-clipper left">
+		          <div class="circle"></div>
+		        </div><div class="gap-patch">
+		          <div class="circle"></div>
+		        </div><div class="circle-clipper right">
+		          <div class="circle"></div>
+		        </div>
+		      </div>
+		    </div>
+	  	</div>
 	    <div class="navbar-fixed">
 	    	<nav class="white">
 	    		<div class="nav-wrapper">
 	      			<a data-activates="side_bar" class="button-collapse left black-text show-on-large" style="margin-left: 20px;"><i class="mdi-navigation-menu"></i></a>
 	      			<a class="logo hide-on-med-and-down"><img src="img/icon.png">Logic</a>
 	      			<ul class="right desn_bar">
-	      				<li title="Items in cart"><a class="btn green black-text" onclick="show_cart()"><i class="mdi-action-shopping-basket left" style="font-size: 1.3rem; line-height: 32px;"></i>Checkout <span style="padding-left: 15px;" class="yellow-text" id="cart_count">0</span></a></li>
+	      				<li title="Items in cart"><a class="btn green white-text" onclick="show_cart()" style="position: relative;"><i class="mdi-action-shopping-basket left" style="font-size: 1.3rem; line-height: 32px;"></i>Checkout <div class="waves-effect waves-circle waves-light red darken-3 white-text center-align" id="cart_count">0</div></a></li>
 	        			<li class="black-text truncate hide-on-small-only" id="nav_fname" onclick="if(check_nav('acc_profile')) get_wish_list();"><img src="img/2.jpg" class="circle" style="height: 50px; width: 50px; float: left; margin: 4px; margin-left:15px;">Hi, <span>Anonymous</span></li>
-	        			<li><a href="index.html"><i class="black-text mdi-navigation-close"></i></a></li>
+	        			<li><a href="./"><i class="black-text mdi-navigation-close"></i></a></li>
 				    </ul>				    
 	      			<ul class="side-nav fixed center grey darken-4" id="side_bar">
 	      				<li style="padding-bottom: 30px"><i class="mdi-navigation-menu"></i></li>
@@ -42,11 +86,11 @@
 	        				<span>Orders</span>
 	        			</li>	        			
 				    </ul>
-				    <ul class="side-nav center" id="dsn_side_bar" style="box-shadow: none;">
-						<br>
+				    <ul class="side-nav center" id="dsn_side_bar" style="box-shadow: none;background: rgba(255, 255, 255, 0.7);" ondblclick="$('._show_opts').sideNav('hide');">
+						<a class="flow-text grey-text">Tap Here to Close</a>
 				    	<div class="row" style="margin-bottom: 0px;">
-					    	<div id="_ep1" class="col s12 white">
-					    		<a class="btn-flat white-text"><i class="mdi-image-palette white-text left"></i>Shirt Colors</a>
+					    	<div id="_ep1" class="col s12 transparent">
+					    		<a class="btn-flat black-text" title="Tap Here to Close"><i class="mdi-image-palette black-text left"></i>Shirt Colors</a>
 					    		<div class="col_pal">
 					    			<div class="black"></div>
 					      			<div class="pink"></div>
@@ -64,13 +108,13 @@
 					    		</div>
 					    		<div class="col s12" style="padding-top: 10px; padding-bottom: 10px;">
 					    			<p  id="gend_select">
-						    			<a class="btn white black-text" onclick="prod_gen_ch(this)" id="F">F</a>
-						    			<a class="btn white black-text btn-flat" onclick="prod_gen_ch(this)" id="M">M</a>
+						    			<a class="btn transparent black-text" onclick="prod_gen_ch(this)" id="F">F</a>
+						    			<a class="btn transparent black-text btn-flat" onclick="prod_gen_ch(this)" id="M">M</a>
 					    			</p>					    			
 					    		</div>
 					    	</div>
-					    	<div id="_ep2" class="col s12 white">
-					    		<a class="btn-flat white-text"><i class="mdi-image-palette white-text left"></i>Design Colors</a>
+					    	<div id="_ep2" class="col s12 transparent">
+					    		<a class="btn-flat black-text" title="Tap Here to Close"><i class="mdi-image-palette black-text left"></i>Design Colors</a>
 					    		<div class="col_pal left">
 					    			<div class="black"></div>
 					      			<div class="pink"></div>
@@ -260,9 +304,9 @@
 				    	</div>				        				
 	  				</div>	  				
 	  				<div class="col l4 m6 s12 right center-align" >
-	  					<a class="btn white black-text col s5" style="margin-top: 20px;" onclick="add_wish()"><i class="mdi-content-save left"></i>Save</a>
-	  					<a class="btn blue col s6 right" style="margin-top: 20px;" onclick="add_cart()"><i class="mdi-action-shopping-basket left"></i>Add To Cart</a>
-	  					<a class="btn red col s12" style="margin-top: 20px;" onclick="buy_now()"><i class="mdi-action-add-shopping-cart left"></i>Purchase Item Now</a>
+	  					<a class="btn waves-effect waves-purple white black-text col s5" style="margin-top: 20px;" onclick="add_wish()"><i class="mdi-content-save left"></i>Save</a>
+	  					<a class="btn waves-effect waves-light blue col s6 right" style="margin-top: 20px;" onclick="add_cart()"><i class="mdi-action-shopping-basket left"></i>Add To Cart</a>
+	  					<a class="btn waves-effect waves-light red col s12" style="margin-top: 20px;" onclick="buy_now()"><i class="mdi-action-add-shopping-cart left"></i>Purchase Item Now</a>
 	  				</div>
 	  			</div>
 	  		</div>
@@ -311,7 +355,7 @@
 				<div style="padding: 20px;"><hr class="white-text" /></div>
 				<div class="row" style="margin-left: 10px;">
 					<div class="col s12">
-						<h5 class="grey-text text-darken-2 flow-text"> Wishlist</h5>
+						<h5 class="grey-text text-darken-2 flow-text"> Saved Designs</h5>
 					</div>
 					<div class="col s12 saved_dsns">
 
@@ -336,9 +380,7 @@
 					              	<th>Actions</th>
 					          	</tr>
 					        </thead>
-					        <tbody class="order_table">
-					        	<tr><td colspan="8" class="center-align flow-text white">No items found :(</td></tr>
-					        </tbody>
+					        <tbody class="order_table"></tbody>
 						</table>
 	  				</div>
 	  			</div>
@@ -425,6 +467,6 @@
 			    			</div>
 	  			</div>
 	  		</div>
-	  	</div>
+	  	</div>	  	
     </body>
 </html>

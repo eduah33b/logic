@@ -1,30 +1,47 @@
+var user_data = '', sql_call_back, sql;
+var val_email = /\S+@\S+\.\S+/;
+var que = 0;
+
 $( document ).ready(function(){
+
 	/* navigation */
 		function go_to_this(id) {
-			$('html, body').animate({ scrollTop: document.getElementById(id).offsetTop + 'px'}, 200);
+			$('html, body').animate({ scrollTop: document.getElementById(id).offsetTop + 'px'}, 2000);
 		}
 		go_to = go_to_this;
 		
 		function open_and_go_to(id){
-			$('.dy_page:not(#' + id + ')').fadeOut(0, function() {
-				$('.dy_pages #'+ id).fadeIn(0, function() {
-						$('html, body').animate({ scrollTop: '0px'}, 1);
-					}
-				);
-			});
-			going_here.back = going_here.here;
-			going_here.here = id;
+			if(id != going_here.here){
+				$('.dy_page:not(#' + id + ')').fadeOut(0, function() {
+					$('.dy_pages #'+ id).fadeIn(0, function() {
+							$('html, body').animate({ scrollTop: '0px'}, 1);
+						}
+					);
+				});
+				going_here.back = going_here.here;
+				going_here.here = id;
+			}
 		}
-		open_this = open_and_go_to;
+		open_this = open_and_go_to;		
 
 	/* Gen Ajax*/
 		function ins_sq_data(sql) {
+			$('#preloader').removeClass('hide');
+			que++;
 	    	$.ajax({
 			    type: "POST",
 			    url: "api/ins_sql.php",
 			    data: {sql: sql},
 			    success: function(id){
 			    	sql_call_back(id);
+			    	if(que != 0)
+			    		que--;
+			    	if(que == 0){
+			    		$('#preloader').addClass('hide');
+			    		$('#preloader').html('Please Wait<br>Communicating with server<br>');
+			    	}else{
+			    		$('#preloader p').append('.');
+			    	}
 			    },
 			    error: function(){
 			    	Materialize.toast('): Oops!! Error Adding Data To DB', 5000);
@@ -33,12 +50,22 @@ $( document ).ready(function(){
 	    }
 	    ins_sql = ins_sq_data;
 	    function get_sq_data(sql){
+	    	$('#preloader').removeClass('hide');
+			que++;
 	    	$.ajax({
 			    type: "POST",
 			    url: "api/get_sql.php",
 			    data: {sql: sql},
 			    success: function(res){
 			    	sql_call_back(res);
+			    	if(que != 0)
+			    		que--;
+			    	if(que == 0){
+			    		$('#preloader').addClass('hide');
+			    		$('#preloader').html('Please Wait<br>Communicating with server<br>');
+			    	}else{
+			    		$('#preloader p').append('. ');
+			    	}
 			    },
 			    error: function(){
 			    	Materialize.toast('): Oops!! Error retriving data', 5000);

@@ -20,11 +20,23 @@
 .drag-target {
 	z-index: 1;
 }
-#dsn_side_bar .col.white, #dsn_side_bar{
-	    background: rgba(0, 0, 0, 0.3) none repeat scroll 0% 0%!important;
+#sidenav-overlay {
+	background-color: rgba(255, 255, 255, 0);
 }
 nav ul li:hover {
 	background-color: #fff;
+}
+#cart_count {
+	position: absolute; 
+	right: -10px; 
+	width: 25px; 
+	height: 25px; 
+	line-height: 25px; 
+	top: -8px; 
+	backface-visibility: hidden; 
+	background-clip: content-box; 
+	outline: 1px solid transparent; 
+	border-radius: 12.5px;
 }
 /* Design nave bar */
 	nav .logo {

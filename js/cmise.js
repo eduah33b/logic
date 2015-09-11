@@ -1,7 +1,7 @@
-var user_data = '', sql_call_back, sql;
-var going_here = {back: 'acc_profile', here: 'acc_profile'};
+var going_here = {back: 'acc_profile', here: ''};
 var check_out_list = [], order_type = 0;
-var val_email = /\S+@\S+\.\S+/;
+var gen_load_state_info = {'save_dsn': 0, 'orders': 0};
+
 /* Registration */
 $( document ).ready(function(){
 	function validate_registration_data(){
@@ -12,7 +12,7 @@ $( document ).ready(function(){
 				if($(con[i]).val().trim().length < 2){
 					$(con[i]).removeClass('valid').addClass('invalid');
 
-					Materialize.toast($(con[i]).attr('er-msg'), 4000);
+					Materialize.toast($(con[i]).attr('er-msg'), 2000);
 
 					$(con[i]).focus();
 
@@ -24,12 +24,12 @@ $( document ).ready(function(){
 			};
 
 			if(!val_email.test(vals[4])){
-				Materialize.toast('Please enter a valid email address', 4000);
+				Materialize.toast('Please enter a valid email address', 2000);
 				$('#register_page>.row>.col>.container>.col input#remail').addClass('invalid').focus();
 				return false;
 			}
 			if(vals[3].length < 10 || !$.isNumeric(vals[3])){
-				Materialize.toast('Please enter a valid phone number', 4000);
+				Materialize.toast('Please enter a valid phone number', 2000);
 				$('#register_page>.row>.col>.container>.col input#rphnum').addClass('invalid').focus();
 				return false;
 			}
@@ -38,6 +38,8 @@ $( document ).ready(function(){
 				Materialize.toast('Please check the terms and conditions box', 3000);
 				return false;			
 			}
+			$('#preloader').removeClass('hide');
+			que++;
 		/* ajax Send*/
 			$.ajax({
 				type: "POST",
@@ -51,12 +53,14 @@ $( document ).ready(function(){
 						
 						set_profile_data();
 						
-						if(document.location.href.split('#')[1].split("?")[0] == 'login_page')
-							open_this('acc_profile');
-						else
-							open_this('desn_studio');
-
-						get_wish_list();
+						if(que != 0)
+			    			que--;
+				    	if(que == 0){
+				    		$('#preloader').addClass('hide');
+				    	}else{
+				    		$('#preloader p').append('.');
+				    	}
+						open_this(going_here.back);
 					}else if(res.err == 1){
 						 $('#login_page input#email').val(vals[4]);
 						 $('#login_page input#pword').val(vals[3]);
@@ -79,15 +83,16 @@ $( document ).ready(function(){
 		var email = $('#login_page input#email').val().trim(), pp = $('#login_page input#pword').val().trim();
 
 		if(!val_email.test(email)){
-			Materialize.toast('Please Enter a valid email address', 4000);
+			Materialize.toast('Please Enter a valid email address', 2000);
 			return false;
 		}
 		if($('#login_page input#pword').val().length != 8){
-			Materialize.toast('Please Enter a valid password', 4000);
+			Materialize.toast('Please Enter a valid password', 2000);
 			$('#login_page input#pword').focus();
 			return false;
 		}
-		
+		$('#preloader').removeClass('hide');
+		que++;
 
 		$.ajax({
 			type: "POST",
@@ -97,11 +102,18 @@ $( document ).ready(function(){
 				if(res !== ''){
 					user_data = res;
 					set_profile_data();
-					if(document.location.href.split('#')[1].split("?")[0] == 'login_page')
-						open_this('acc_profile');
-					else
-						open_this('desn_studio');
-					get_wish_list();
+					if(que != 0)
+			    		que--;
+			    	if(que == 0){
+			    		$('#preloader').addClass('hide');
+			    	}else{
+			    		$('#preloader p').append('.');
+			    	}
+					open_this(going_here.back);
+					if(going_here.back == 'acc_profile')
+						get_wish_list();
+					else if(going_here.back == 'order_tracking')
+						get_orders();
 				}else{
 					Materialize.toast('Invalid Login Credentials', 2000);
 				}
@@ -190,19 +202,21 @@ $( document ).ready(function(){
 	set_profile_data = set_user_profile_data;	
 
 	function get_user_order_list(){
-		sql = 'SELECT purchases.*, a.price as prod_price, b.price as dsn_price, b.svg from purchases, products a, designs b where purchases.prod_id = a.product_id and purchases.dsn_id = b.id and user_id = "' + user_data.user_id + '" order by id asc;';
+		sql = 'SELECT purchases.*, a.price as prod_price, b.price as dsn_price, b.svg from purchases, products a, designs b where purchases.prod_id = a.product_id and purchases.dsn_id = b.id and user_id = "' + user_data.user_id + '" and purchases.id > ' + gen_load_state_info.orders + ' order by purchases.id asc;';
 		sql_call_back = function (data){			
-			$('#order_tracking>.row>.col>table>tbody.order_table').html('');
-			for (var i = data.length - 1; i >= 0; i--) {
-				$('#order_tracking>.row>.col>table>tbody.order_table').append('<tr id="item_' + data[i].id + '"><td><div class="col l12 m12 s12"><div class="canv_item center" prod-id="' + data[i].prod_id + '" gender="' + data[i].prod_gen + '" prod-price="' + data[i].prod_price + '"><img src="img/products/' + data[i].prod_gen + '/' + data[i].prod_id + '.jpg"><img src="img/products/' + data[i].prod_gen + '/' + data[i].prod_id + '.png" style="background-color: ' + data[i].prod_cl+ '"></div><div class="brush_on"><div class="desn_contner" dsn-price="' + data[i].dsn_price +'">' + data[i].svg + '</div></div></div></td><td>GHS ' + (parseInt(data[i].prod_price) + parseInt(data[i].dsn_price)) + '</td><td>' + data[i].quantity + '</td><td>' + data[i].size + '</td><td>' + (data[i].quantity *  (parseInt(data[i].prod_price) + parseInt(data[i].dsn_price)))+ '</td><td>' + data[i].date_added + '</td><td class="green-text">' + data[i].status + '</td><td><a class="btn btn-flat white"  onclick="re_order(\'' + data[i].prod_id + '\', \'' + data[i].prod_cl + '\', \'' +data[i].prod_gen+ '\', \''+ data[i].dsn_id+'\', \'' + data[i].dsn_cl + '\', \'' + data[i].prod_price+ '\', \'' + data[i].dsn_price + '\', \'' + data[i].id + '\')"><i class="mdi-navigation-refresh grey-text text-darken-2"></i></a><a class="btn btn-flat white"  onclick="open_this_dsn(\'' + data[i].prod_id + '\', \'' + data[i].prod_cl + '\', \'' +data[i].prod_gen+ '\', \''+ data[i].dsn_id+'\', \'' + data[i].dsn_cl + '\', \'' + data[i].prod_price+ '\', \'' + data[i].dsn_price + '\');"><i class="mdi-action-visibility blue-text text-darken-2"></i></a><a class="btn btn-flat white"  onclick="del_purch(' + data[i].id + ')"><i class="mdi-action-delete red-text text-darken-2"></i></a></td></tr>');
-
-					
+			if(data.length > 0){
+				gen_load_state_info.orders = data[data.length - 1].id;
+				$('#order_tracking>.row>.col>p>span.red-text').html(data.length);
+				for (var i = data.length - 1; i >= 0; i--) {
+					$('#order_tracking>.row>.col>table>tbody.order_table').append('<tr id="item_' + data[i].id + '"><td><div class="col l12 m12 s12"><div class="canv_item center" prod-id="' + data[i].prod_id + '" gender="' + data[i].prod_gen + '" prod-price="' + data[i].prod_price + '"><img src="img/products/' + data[i].prod_gen + '/' + data[i].prod_id + '.jpg"><img src="img/products/' + data[i].prod_gen + '/' + data[i].prod_id + '.png" style="background-color: ' + data[i].prod_cl+ '"></div><div class="brush_on"><div class="desn_contner" dsn-price="' + data[i].dsn_price +'">' + data[i].svg + '</div></div></div></td><td>GHS ' + (parseInt(data[i].prod_price) + parseInt(data[i].dsn_price)) + '</td><td>' + data[i].quantity + '</td><td>' + data[i].size + '</td><td>' + (data[i].quantity *  (parseInt(data[i].prod_price) + parseInt(data[i].dsn_price)))+ '</td><td>' + data[i].date_added + '</td><td class="green-text">' + data[i].status + '</td><td><a class="btn btn-flat white"  onclick="re_order(\'' + data[i].prod_id + '\', \'' + data[i].prod_cl + '\', \'' +data[i].prod_gen+ '\', \''+ data[i].dsn_id+'\', \'' + data[i].dsn_cl + '\', \'' + data[i].prod_price+ '\', \'' + data[i].dsn_price + '\', \'' + data[i].id + '\')"><i class="mdi-navigation-refresh grey-text text-darken-2"></i></a><a class="btn btn-flat white"  onclick="open_this_dsn(\'' + data[i].prod_id + '\', \'' + data[i].prod_cl + '\', \'' +data[i].prod_gen+ '\', \''+ data[i].dsn_id+'\', \'' + data[i].dsn_cl + '\', \'' + data[i].prod_price+ '\', \'' + data[i].dsn_price + '\');"><i class="mdi-action-visibility blue-text text-darken-2"></i></a><a class="btn btn-flat white"  onclick="del_purch(' + data[i].id + ')"><i class="mdi-action-delete red-text text-darken-2"></i></a></td></tr>');
 					$('#order_tracking>.row>.col>table>tbody.order_table #item_' +data[i].id+ ' .brush_on .desn_contner svg .dsn_path_col').attr('fill', data[i].dsn_cl);
-			};
-			$('#order_tracking>.row>.col>table>tbody.order_table .brush_on .desn_contner svg').attr('width', '37.5px');
-			$('#order_tracking>.row>.col>table>tbody.order_table .brush_on .desn_contner svg').attr('height', '37.5px');
-			$('#order_tracking>.row>.col>p>span.red-text').html(data.length);
-			$('#order_tracking>.row>.col>table>tbody.order_table').append('<tr><td colspan="8" class="center-align flow-text white">No more items found :(</td></tr>');
+				};
+				$('#order_tracking>.row>.col>table>tbody.order_table .brush_on .desn_contner svg').attr('width', '37.5px');
+				$('#order_tracking>.row>.col>table>tbody.order_table .brush_on .desn_contner svg').attr('height', '37.5px');
+			}else{
+				$('#order_tracking>.row>.col>table>tbody.order_table').append('<tr><td colspan="8" class="center-align flow-text white">No more items found :(</td></tr>');				
+			}
+			
 		};
 		get_sql(sql);
 	}
@@ -230,17 +244,20 @@ $( document ).ready(function(){
 	add_wish = add_dsn_to_wishlist;
 
 	function get_user_wish_list(){
-		sql = 'SELECT cart.*, a.price as prod_price, b.price as dsn_price, b.svg from cart, products a, designs b where cart.prod_id = a.product_id and cart.dsn_id = b.id and us_id = "' + user_data.user_id + '" order by cart.id';
+		sql = 'SELECT cart.*, a.price as prod_price, b.price as dsn_price, b.svg from cart, products a, designs b where cart.id > ' + gen_load_state_info.save_dsn + ' and  cart.prod_id = a.product_id and cart.dsn_id = b.id and us_id = "' + user_data.user_id + '" order by cart.id asc';
 		sql_call_back = function (data){			
-			$('#acc_profile>.row>.col.saved_dsns').html('');
-			for (var i = data.length - 1; i >= 0; i--) {				
-				$('#acc_profile>.row .saved_dsns').append('<div class="col l3 m6 s12" id="item_' +data[i].id+ '"><div class="canv_item center"><img src="img/products/' + data[i].prod_gen + '/' + data[i].prod_id  +'.jpg"><img src="img/products/' + data[i].prod_gen + '/' + data[i].prod_id  +'.png" style="background-color: ' +data[i].prod_cl+ '"></div><div class="brush_on"><div class="desn_contner">' + data[i].svg + '</div><a onclick="open_this_dsn(\'' + data[i].prod_id + '\', \'' + data[i].prod_cl + '\', \'' +data[i].prod_gen+ '\', \''+ data[i].dsn_id+'\', \'' + data[i].dsn_col + '\', \'' + data[i].prod_price+ '\', \'' + data[i].dsn_price + '\');" class="btn btn-flat waves-effect waves-blue" id="edit_dsn" style="top:20px;right:10px;"><i class="mdi-content-create blue-text"></i></a><a onclick="del_wish(' + data[i].id + ')" class="btn btn-flat waves-effect waves-blue" id="edit_dsn" style="bottom:20px;left:10px;"><i class="mdi-action-delete red-text"></i></a><a class="btn btn-flat black-text waves-effect waves-blue" id="edit_dsn" style="bottom:20px;right:10px;" href="cmise.html#desn_studio?prod_id=' + data[i].prod_id + '&prod_cl=' + data[i].prod_cl + '&prod_gen=' +data[i].prod_gen+ '&dsn_id='+ data[i].dsn_id+'&dsn_col=' + data[i].dsn_col + '&prod_price=' + data[i].prod_price+ '&dsn_price=' + data[i].dsn_price + '" target="_blank" title="Share design"><i class="mdi-social-share green-text left"></i></a></div></div>');
-
-					$('#acc_profile>.row .saved_dsns>#item_' +data[i].id+ ' .brush_on .desn_contner svg').attr('width', '150px');
-					$('#acc_profile>.row .saved_dsns>#item_' +data[i].id+ ' .brush_on .desn_contner svg').attr('height', '150px');
+			if(data.length > 0){
+				$('#acc_profile>.row .saved_dsns>div:last-child').remove();
+				gen_load_state_info.save_dsn = data[data.length - 1].id;
+				for (var i = data.length - 1; i >= 0; i--) {				
+					$('#acc_profile>.row .saved_dsns').append('<div class="col l3 m6 s12" id="item_' +data[i].id+ '"><div class="canv_item center"><img src="img/products/' + data[i].prod_gen + '/' + data[i].prod_id  +'.jpg"><img src="img/products/' + data[i].prod_gen + '/' + data[i].prod_id  +'.png" style="background-color: ' +data[i].prod_cl+ '"></div><div class="brush_on"><div class="desn_contner">' + data[i].svg + '</div><a onclick="open_this_dsn(\'' + data[i].prod_id + '\', \'' + data[i].prod_cl + '\', \'' +data[i].prod_gen+ '\', \''+ data[i].dsn_id+'\', \'' + data[i].dsn_col + '\', \'' + data[i].prod_price+ '\', \'' + data[i].dsn_price + '\');" class="btn btn-flat waves-effect waves-blue" id="edit_dsn" style="top:20px;right:10px;"><i class="mdi-content-create blue-text"></i></a><a onclick="del_wish(' + data[i].id + ')" class="btn btn-flat waves-effect waves-blue" id="edit_dsn" style="bottom:20px;left:10px;"><i class="mdi-action-delete red-text"></i></a><a class="btn btn-flat black-text waves-effect waves-blue" id="edit_dsn" style="bottom:20px;right:10px;" href="cmise.html#desn_studio?prod_id=' + data[i].prod_id + '&prod_cl=' + data[i].prod_cl + '&prod_gen=' +data[i].prod_gen+ '&dsn_id='+ data[i].dsn_id+'&dsn_col=' + data[i].dsn_col + '&prod_price=' + data[i].prod_price+ '&dsn_price=' + data[i].dsn_price + '" target="_blank" title="Share design"><i class="mdi-social-share green-text left"></i></a></div></div>');
 					$('#acc_profile>.row .saved_dsns>#item_' +data[i].id+ ' .brush_on .desn_contner svg .dsn_path_col').attr('fill', data[i].dsn_col);
-			};
-			$('#acc_profile>.row .saved_dsns').append('<div onclick="open_this(\'desn_studio\')" class="col m3 s12" style="width: 302px; height: 403px;"><div class="show_more_but center" title="Add new item to wishlist"><i class="mdi-content-add-circle grey-text text-lighten-2 large"></i></div></div>');
+				};
+				
+				$('#acc_profile>.row .saved_dsns .brush_on .desn_contner svg').attr('width', '150px');
+				$('#acc_profile>.row .saved_dsns .brush_on .desn_contner svg').attr('height', '150px');
+				$('#acc_profile>.row .saved_dsns').append('<div onclick="open_this(\'desn_studio\')" class="col m3 s12" style="width: 302px; height: 403px;"><div class="show_more_but center" title="Add new item to wishlist"><i class="mdi-content-add-circle grey-text text-lighten-2 large"></i></div></div>');
+			}
 		};
 		get_sql(sql);
 	}
@@ -297,10 +314,7 @@ $( document ).ready(function(){
 
 		$('#order_checkout>.row>.col>table>tbody').html('<tr id="item_0"><td><div class="col l12 m12 s12"><div class="canv_item center"><img src="img/products/' + prod_info.prod_gen + '/' + prod_info.prod_id + '.jpg"><img src="img/products/' +prod_info.prod_gen + '/' + prod_info.prod_id + '.png" style="background-color: ' + prod_info.prod_col + '"></div><div class="brush_on"><div class="desn_contner"></div></div></div></td><td>' + prod_info.price + '</td><td><input id="quant" type="text" er-msg="Please Enter a quantity" class="validate col l4 m12 s12" value="1" onkeyup="calc_price(this.value, ' + prod_info.price + ', 0)"></td><td><select class="browser-default" id="size"><option value="M">Meduim</option><option value="L">Large</option><option value="XL">Extra Large</option></select></td><td> GHS <span class="red-text">' + prod_info.price + '</span></td><td><a class="btn btn-flat white"  onclick="rm_it_ui(0)"><i class="mdi-action-delete red-text text-darken-2"></i></a></td></tr>');
 
-		$('#order_checkout>.row>.col>table .brush_on .desn_contner').html($('#order_tracking>.row>.col>table>tbody.order_table #item_' + purc_id + ' .desn_contner').html());
-		/*$('#order_checkout>.row>.col>table .brush_on .desn_contner svg').attr('width', '37.5px');
-		$('#order_checkout>.row>.col>table .brush_on .desn_contner svg').attr('height', '37.5px');
-		$('#order_checkout>.row>.col>table .brush_on .desn_contner svg .dsn_path_col').attr('fill', prod_info.dsn_col);*/
+		$('#order_checkout>.row>.col>table .brush_on .desn_contner').html($('#order_tracking>.row>.col>table>tbody.order_table #item_' + purc_id + ' .desn_contner').html());		
 	}
 	re_order = re_order_item;
 	function buy_item_now(){
@@ -346,7 +360,7 @@ $( document ).ready(function(){
 			if($(con[i]).val().trim() == ''){
 				$(con[i]).removeClass('valid').addClass('invalid');
 
-				Materialize.toast($(con[i]).attr('er-msg'), 4000);
+				Materialize.toast($(con[i]).attr('er-msg'), 2000);
 
 				$(con[i]).focus();
 
@@ -363,7 +377,7 @@ $( document ).ready(function(){
 				if($(con[i]).val().trim() == ''){
 					$(con[i]).removeClass('valid').addClass('invalid');
 
-					Materialize.toast($(con[i]).attr('er-msg'), 4000);
+					Materialize.toast($(con[i]).attr('er-msg'), 2000);
 
 					$(con[i]).focus();
 
@@ -375,12 +389,12 @@ $( document ).ready(function(){
 			};			
 
 			if(!val_email.test(vals[4])){
-				Materialize.toast('Please enter a valid email address', 4000);
+				Materialize.toast('Please enter a valid email address', 2000);
 				$('#order_checkout>.row input#b_email').addClass('invalid').focus();
 				return false;
 			}
 			if(vals[3].length < 10 || !$.isNumeric(vals[3])){
-				Materialize.toast('Please enter a valid phone number', 4000);
+				Materialize.toast('Please enter a valid phone number', 2000);
 				$('#order_checkout>.row input#b_phnum').addClass('invalid').focus();
 				return false;
 			}
@@ -472,7 +486,7 @@ $( document ).ready(function(){
 		check_out_list[new_index].dsn_svg = $('#desn_studio>.row>.col>.brush_on .desn_contner').html();
 
 		check_out_list[new_index].price = parseInt($('#desn_studio>.row>.col>.canv_item').attr('prod-price')) + parseInt($('#desn_studio>.row>.col>.brush_on .desn_contner').attr('dsn-price'));
-		Materialize.toast('Design Added to cart', 1000);
+		Materialize.toast('Design Added to cart', 400);
 		$('#cart_count').html(check_out_list.length);
 	}
 	add_cart = add_item_to_checkout;
@@ -500,9 +514,10 @@ $( document ).ready(function(){
 
 	function remove_from_ui(id){
     	$('#order_checkout>.row>.col>table>tbody #item_' + id).fadeOut(1000, function() {
-			$(id).remove();
+			$('#order_checkout>.row>.col>table>tbody #item_' + id).remove();
 		});
     	check_out_list[id] = null;
+    	$('#cart_count').html(parseInt($('#cart_count').html()) - 1);
     }
     rm_it_ui = remove_from_ui;
 });
@@ -534,7 +549,7 @@ $( document ).ready(function(){
 				sql = 'UPDATE users SET ' + col + ' = "' + inp_data.toProperCase() + '" WHERE users.user_id = "' + user_data.user_id + '";';
 			}
 			sql_call_back = function(data) {
-				Materialize.toast('User Data Updated', 4000);
+				Materialize.toast('User Data Updated', 2000);
 			}
 			ins_sql(sql);
 		}
@@ -562,18 +577,18 @@ $( document ).ready(function(){
 
 	function enable_user_data_edit(){
 		$('#acc_profile>.row .col input[disabled=""], #acc_profile>.row .col textarea[disabled=""]').removeAttr('disabled');
-		Materialize.toast('User data editing enabled', 4000);
+		Materialize.toast('User data editing enabled', 2000);
 	}
 	enable_edit = enable_user_data_edit;
 
 	function reset_user_passPhrase(){
 		var email = $('#login_page input#email').val().trim(), pp = $('#login_page input#pword').val().trim();
 		if(!val_email.test(email)){
-			Materialize.toast('Please Enter your email address', 4000);
+			Materialize.toast('Please Enter your email address', 2000);
 			return false;
 		}
 		if(pp.length < 10 || !$.isNumeric(pp)){
-			Materialize.toast('Please Enter a valid phone number in the password box', 4000);
+			Materialize.toast('Please Enter a valid phone number in the password box', 2000);
 			return false;
 		}
 
@@ -603,8 +618,9 @@ $( document ).ready(function(){
 		edge: 'left'
 	});
 	$('._show_opts').sideNav({
-		menuWidth: 300,
-		edge: 'right',
+		menuWidth: 320,
+		edge: 'left',
+		closeOnClick: true
 	});
 	$('.drag-target')[1].remove();
 	open_this(document.location.href.split('#')[1].split("?")[0]);
@@ -628,8 +644,8 @@ $( document ).ready(function(){
 				open_this(id); 
 				return true;
 			}else{
-				Materialize.toast('<span>Please Login or Register to continue</span><a onclick="open_this(\'desn_studio\')" class="btn-flat red-text truncate"><i class="mdi-navigation-arrow-back left red-text"></i>Back</a>', 7000);
-				open_this('login_page');
+				Materialize.toast('<span>Please Login or Register to continue</span><a onclick="open_this(\'desn_studio\')" class="btn-flat red-text truncate"><i class="mdi-navigation-arrow-back left red-text"></i>Back</a>', 3000);
+				open_this('login_page');				
 				return false;
 			} 
 		}
@@ -645,10 +661,14 @@ $( document ).ready(function(){
 				for (var i = 0; i < data.length; i++) {
 					$('#desn_studio #ep2 .desn_list').append('<div title="' + data[i].name + '" onclick="ch_dsn_img(this)" dsn-id="'+ data[i].id +'" dsn-price="' + data[i].price + '">' +data[i].svg+ '</div>');
 					$('#dsn_side_bar #_ep2 .desn_list').append('<div title="' + data[i].name + '" onclick="ch_dsn_img(this)" dsn-id="'+ data[i].id +'" dsn-price="' + data[i].price + '">' +data[i].svg+ '</div>');
-					sql = 'SELECT * from designs where prod_id = "' +  data[i].prod_id + '" and id > ' + data[i].id + ' order by id limit 2;';
+					sql = 'SELECT * from designs where prod_id = "' +  data[i].prod_id + '" and id > ' + data[i].id + ' order by id limit 5';
 				};
-				if(sql != '')
+				if(sql != ''){
 					get_sql(sql);
+					if(que != 0)
+			    		que--;
+					$('#preloader').addClass('hide');
+				}
 				if(document.location.href.split('#')[1].split("?").length < 2 && $('#desn_studio>.row>.col>.brush_on .desn_contner').html() == ''){
 					$('#desn_studio>.row>.col>.brush_on .desn_contner').html(data[0].svg);
 					$('#desn_studio>.row>.col>.brush_on .desn_contner svg').attr('width', '150px');

@@ -1,3 +1,8 @@
+* {
+   outline: 1px solid transparent;
+   -webkit-backface-visibility: hidden;
+   backface-visibility: hidden;
+}
 .up_ic {
   -webkit-transform: rotate(90deg);
     -moz-transform: rotate(90deg);
@@ -5,7 +10,29 @@
     -o-transform: rotate(90deg);
     transform: rotate(90deg);
 }
-
 .rounded {
 	border-radius: 24px;
+}
+a {
+	text-transform: capitalize!important;
+}
+#preloader {
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    background: rgba(255, 255, 255, 0.7) none repeat scroll 0% 0% !important;
+    z-index: 999999;
+    padding-left: calc(50% - 140px);
+}
+#preloader p {
+    position: absolute;
+    top: 40%;
+    width: 280px;
+    text-align: center;
+}
+.preloader-wrapper.big {
+    height: 280px;
+    width: 280px;
 }
