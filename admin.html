@@ -1,0 +1,385 @@
+ <!DOCTYPE html>
+<html>
+	<head>
+    	<title>Logix Mass customisation</title>
+		<!--Import materialize.css-->
+		<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+		<link type="text/css" rel="stylesheet" href="css/admin.css"  media="screen,projection"/>
+		<link type="text/css" rel="stylesheet" href="css/general.css"  media="screen,projection"/>
+
+		<!--Import jQuery before materialize.js-->
+		<script type="text/javascript" src="js/jquery.min.js"></script>
+		<script type="text/javascript" src="js/materialize.min.js"></script>
+		<script type="text/javascript" src="js/general.js"></script>
+		<script type="text/javascript" src="js/admin.js"></script>
+
+		<!--Let browser know website is optimized for mobile-->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+
+		<style type="text/css">
+		</style>
+    </head>
+    <body class="white">
+    	<!-- Preloader -->
+    		<div id="preloader" class="valign-wrapper hide">
+	   			<p class="valign flow-text center">Loading ...<br></p>
+		  		<div class="preloader-wrapper big active valign">
+			      <div class="spinner-layer spinner-blue">
+			        <div class="circle-clipper left">
+			          <div class="circle"></div>
+			        </div><div class="gap-patch">
+			          <div class="circle"></div>
+			        </div><div class="circle-clipper right">
+			          <div class="circle"></div>
+			        </div>
+			      </div>
+
+			      <div class="spinner-layer spinner-red">
+			        <div class="circle-clipper left">
+			          <div class="circle"></div>
+			        </div><div class="gap-patch">
+			          <div class="circle"></div>
+			        </div><div class="circle-clipper right">
+			          <div class="circle"></div>
+			        </div>
+			      </div>
+
+			      <div class="spinner-layer spinner-yellow">
+			        <div class="circle-clipper left">
+			          <div class="circle"></div>
+			        </div><div class="gap-patch">
+			          <div class="circle"></div>
+			        </div><div class="circle-clipper right">
+			          <div class="circle"></div>
+			        </div>
+			      </div>
+
+			      <div class="spinner-layer spinner-green">
+			        <div class="circle-clipper left">
+			          <div class="circle"></div>
+			        </div><div class="gap-patch">
+			          <div class="circle"></div>
+			        </div><div class="circle-clipper right">
+			          <div class="circle"></div>
+			        </div>
+			      </div>
+			    </div>
+		  	</div>
+    	<div class="dy_pages">
+	    	<!-- Log In Div -->
+		    	<div class="dy_page row center v_align_c" id="log_in">
+			    	<div class="white col offset-l4 offset-m2 offset-s1 l4 m8 s10 z-depth-1" style="padding: 10px;">
+			    		<h2 class="flow-text">Admin Login</h2>
+				    	<div class="input-field col s12">
+				          <i class="mdi-action-account-circle prefix"></i>
+				          <input id="email" type="text" class="validate" value="eduah33@gmail.com">
+				          <label for="email">Email</label>
+				        </div>
+				        <div class="input-field col s12">
+				          <i class="mdi-action-lock-outline prefix"></i>
+				          <input id="pword" type="tel" class="validate" value="939bb44b">
+				          <label for="pword">Pass Phrase</label>
+				        </div>
+			        </div>
+			        <div class="col offset-l4 offset-m3 offset-s1 l4 m6 s10 z-depth-3 white" style="padding: 10px;">
+			        	<a class="btn green right" onclick="validate_log_in();">Login</a>
+			        	<a class="left btn-flat blue-text" style="margin-left: -26px;">Reset pass phrase?</a>
+			        </div>
+			    </div>
+
+			 <a class="btn rounded red-text white" style="position: fixed; top: 10px; right: 10px;" onclick="open_this('dash_board');"><i class="left mdi-hardware-keyboard-backspace"></i>Back</a>
+
+			<!-- Dash Board -->
+				<div class="dy_page section" id="dash_board">
+					<div class="row center">
+						<h2 class="flow-text">Admin Dash Board</h2>						
+						<div class="circle dash_opt white waves-effect waves-circle waves-orange z-depth-2" onclick="get_b(0);open_this('view_blog');" id="bview_blog">
+							<i class="center mdi-action-subject"></i>
+							<p>Edit Blog</p>
+							<div class="count">
+								<span class="flow-text">100</span><br>
+								<sup>blogs</sup>
+							</div>
+						</div>						
+						<div class="circle dash_opt white waves-effect waves-circle waves-orange z-depth-2" onclick="open_this('new_orders');get_np();" id="bnew_orders">
+							<i class="center mdi-action-shopping-basket"></i>
+							<p>New Orders</p>
+							<div class="count">
+								<span class="flow-text">100</span><br>
+								<sup>orders</sup>
+							</div>
+						</div>
+						<div class="circle dash_opt white waves-effect waves-circle waves-orange z-depth-2" onclick="track_or();open_this('prod_tracking');" id="bprod_tracking">
+							<i class="center mdi-action-shopping-cart"></i>
+							<p>Orders In Production</p>
+							<div class="count">
+								<span class="flow-text"></span><br>
+								<sup>orders</sup>
+							</div>
+						</div>
+						<div class="circle dash_opt white waves-effect waves-circle waves-orange z-depth-2" onclick="track_en();open_this('enroute_tracking');" id="benroute_tracking">
+							<i class="center mdi-action-dns"></i>
+							<p>Purchases Enroute</p>
+							<div class="count">
+								<span class="flow-text">100</span><br>
+								<sup>orders</sup>
+							</div>
+						</div>
+						<div class="circle dash_opt white waves-effect waves-circle waves-orange z-depth-2" onclick="get_delv();open_this('deliveries');" id="bdeliveries">
+							<i class="center mdi-action-dns"></i>
+							<p>Finished Trans.</p>
+							<div class="count">
+								<span class="flow-text">100</span><br>
+								<sup>orders</sup>
+							</div>
+						</div>
+						<div class="circle dash_opt white waves-effect waves-circle waves-orange z-depth-2" onclick="get_fb();open_this('user_messages')" id="buser_messages">
+							<i class="center mdi-action-speaker-notes"></i>
+							<p>View Messages</p>
+							<div class="count">
+								<span class="flow-text">100</span><br>
+								<sup>messages</sup>
+							</div>
+						</div>
+						<!-- <div class="circle dash_opt white waves-effect waves-circle waves-orange z-depth-2">
+							<i class="center mdi-file-cloud-upload"></i>
+							<p>Upload LookBook</p>
+							<div class="count">
+								<span class="flow-text">100</span><br>
+								<sup>designs</sup>
+							</div>
+						</div>
+						<div class="circle dash_opt white waves-effect waves-circle waves-orange z-depth-2">
+							<i class="center mdi-editor-border-color"></i>
+							<p>Edit Studio Elements</p>
+							<div class="count">
+								<span class="flow-text">100</span><br>
+								<sup>designs</sup>
+							</div>
+						</div> -->
+						
+					</div>
+				</div>
+
+			<!-- Blog CMS -->
+				<!-- Add New -->
+				<div class="dy_page section center v_align_c" id="add_blog">
+					<div class="container row">
+						<div class="white col offset-l1 offset-m1 offset-s1 l10 m10 s10 z-depth-1" style="padding: 10px;">
+				    		<h2 class="flow-text">Add Blog</h2>
+					    	<div class="input-field col m6 s12">
+					          	<select class="browser-default" err-msg="Please Select a category" id="post_ty" autocomplete="off">
+					          		<option value="News">News</option>
+					          		<option value="Product Updates">Product Updates</option>
+					          	</select>
+					        </div>
+					        <div class="input-field col m6 s12">
+					          <input id="title" type="text" class="validate" err-msg="Please Enter a title" autocomplete="off">
+					          <label for="title">Title</label>
+					        </div>
+					        <div class="input-field col s12">
+					            <textarea id="post" class="materialize-textarea" err-msg="Please enter a blog text" autocomplete="off"></textarea>
+					            <label for="post">Textarea</label>
+					        </div>
+					        <div class="file-field input-field col m6 s12">
+						      	<div class="btn col s4">
+							        <span>Image</span>
+							        <input type="file" onchange="get_i_base(this)" id="file_up" onchange="get_i_base()" autocomplete="off"/>
+							    </div>
+						      	<input class="file-path validate col s8 file_up" type="text"  autocomplete="off"/>
+						    </div>
+						    <div class="input-field col m6 s12">
+					          <input id="yout" type="text" class="validate" autocomplete="off">
+					          <label for="yout">Youtube URL</label>
+					        </div>
+				        </div>
+				        <div class="col offset-s1 s10 z-depth-3 white" style="padding: 10px;">
+				        	<a class="btn blue right" onclick="val_blog();">Publish</a>				        	
+				        </div>
+					</div>
+				</div>
+
+				<!-- View -->
+				<div class="dy_page section" id="view_blog">
+					<div class="row filters">
+						<div class="col s12">
+							<h2 class="center flow-text"><a class="btn btn-flat white">All Blogs</a></h2>
+						</div>
+	              		<div class="input-field col l3 m4 s12">
+	              			<input id="view_blog1" type="text" class="validate" onchange="ld_stats.blog = 0; get_b()" cul="title" autocomplete="off">
+	              			<label for="view_blog1">Title</label>    
+	              		</div>
+			            <div class="input-field col l3 m4 s12">
+							<input id="view_blog2" type="text" class="validate"  onchange="ld_stats.blog = 0; get_b()" cul="cat" autocomplete="off">
+		          			<label for="view_blog2">Category</label>    
+		          		</div>
+		          		<div class="input-field col l3 m4 s12">
+		          			<input id="view_blog3" type="text" class="validate"  onchange="ld_stats.blog = 0; get_b()" cul="post" autocomplete="off">
+		          			<label for="view_blog3">Post</label>    
+		           		</div>
+		           		<div class="input-field col l3 m4 s12">
+			      			<input id="view_blog5" type="text" class="validate"  onchange="ld_stats.blog = 0; get_b()" cul="media" autocomplete="off">
+			      			<label for="view_blog5">Media</label>    
+		           		</div>
+		           		<div class="input-field col l3 m4 s12">
+		          			<input id="view_blog6" type="text" class="validate"  onchange="ld_stats.blog = 0; get_b()" cul="date_added" autocomplete="off">
+		          			<label for="view_blog6">Date</label>    
+		           		</div>
+					</div>
+					<div class="row" id="blog_list">						
+					</div>	
+					<a class="btn-floating btn-large waves-effect waves-purple white" style="position: fixed; bottom: 20px; right: 10px;" onclick="open_this('add_blog');" title="Add Blog"><i class="black-text mdi-content-add"></i></a>
+				</div>
+		
+			<!-- New Orders -->
+				<div class="dy_page section" id="new_orders">
+					<div class="row">
+						<div class="row filters">
+							<div class="col s12">
+								<h2 class="center flow-text"><a class="btn btn-flat white">New Orders</a></h2>
+							</div>
+						
+		              		<div class="input-field col l3 m4 s12">
+		              			<input id="view_new_ord1" type="text" class="validate" onchange="ld_stats.new_ord = 0; get_np()" cul="prod_cl" autocomplete="off">
+		              			<label for="view_new_ord1">Product Colour</label>    
+		              		</div>
+				            <div class="input-field col l3 m4 s12">
+								<input id="view_new_ord2" type="text" class="validate"  onchange="ld_stats.new_ord = 0; get_np()" cul="dsn_cl" autocomplete="off">
+			          			<label for="view_new_ord2">Design Colour</label>    
+			          		</div>
+			          		<div class="input-field col l3 m4 s12">
+			          			<input id="view_new_ord3" type="text" class="validate"  onchange="ld_stats.new_ord = 0; get_np()" cul="prod_gen" autocomplete="off">
+			          			<label for="view_new_ord3">Gender</label>    
+			           		</div>
+			           		<div class="input-field col l3 m4 s12">
+				      			<input id="view_new_ord5" type="text" class="validate"  onchange="ld_stats.new_ord = 0; get_np()" cul="size" autocomplete="off">
+				      			<label for="view_new_ord5">Size</label>    
+			           		</div>
+			           		<div class="input-field col l3 m4 s12">
+			          			<input id="view_new_ord6" type="text" class="validate"  onchange="ld_stats.new_ord = 0; get_np()" cul="user_id" autocomplete="off">
+			          			<label for="view_new_ord6">User ID</label>    
+			           		</div>
+						</div>
+					</div>
+					<div class="row" id="order_list"></div>					
+				</div>
+		
+			<!-- Orders in production -->
+				<div class="dy_page section" id="prod_tracking">
+					<div class="row">
+						<div class="row filters">
+							<div class="col s12">
+								<h2 class="center flow-text"><a class="btn btn-flat white">Orders in Production</a></h2>
+							</div>
+						
+		              		<div class="input-field col l3 m4 s12">
+		              			<input id="view_prod_ord1" type="text" class="validate" onchange="ld_stats.prod_ord = 0; track_or()" cul="prod_cl" autocomplete="off">
+		              			<label for="view_prod_ord1">Product Colour</label>    
+		              		</div>
+				            <div class="input-field col l3 m4 s12">
+								<input id="view_prod_ord2" type="text" class="validate"  onchange="ld_stats.prod_ord = 0; track_or()" cul="dsn_cl" autocomplete="off">
+			          			<label for="view_prod_ord2">Design Colour</label>    
+			          		</div>
+			          		<div class="input-field col l3 m4 s12">
+			          			<input id="view_prod_ord3" type="text" class="validate"  onchange="ld_stats.prod_ord = 0; track_or()" cul="prod_gen" autocomplete="off">
+			          			<label for="view_prod_ord3">Gender</label>    
+			           		</div>
+			           		<div class="input-field col l3 m4 s12">
+				      			<input id="view_prod_ord5" type="text" class="validate"  onchange="ld_stats.prod_ord = 0; track_or()" cul="size" autocomplete="off">
+				      			<label for="view_prod_ord5">Size</label>    
+			           		</div>
+			           		<div class="input-field col l3 m4 s12">
+			          			<input id="view_prod_ord6" type="text" class="validate"  onchange="ld_stats.prod_ord = 0; track_or()" cul="user_id" autocomplete="off">
+			          			<label for="view_prod_ord6">User ID</label>    
+			           		</div>
+						</div>
+					</div>
+					<div class="row" id="order_list"></div>					
+				</div>
+
+			<!-- Orders in enroute -->
+				<div class="dy_page section" id="enroute_tracking">
+					<div class="row">
+						<div class="row filters">
+							<div class="col s12">
+								<h2 class="center flow-text"><a class="btn btn-flat white">Orders completed and enrout to customer</a></h2>
+							</div>
+						
+		              		<div class="input-field col l3 m4 s12">
+		              			<input id="view_track_en1" type="text" class="validate" onchange="ld_stats.track_en = 0; track_en()" cul="prod_cl" autocomplete="off">
+		              			<label for="view_track_en1">Product Colour</label>    
+		              		</div>
+				            <div class="input-field col l3 m4 s12">
+								<input id="view_track_en2" type="text" class="validate"  onchange="ld_stats.track_en = 0; track_en()" cul="dsn_cl" autocomplete="off">
+			          			<label for="view_track_en2">Design Colour</label>    
+			          		</div>
+			          		<div class="input-field col l3 m4 s12">
+			          			<input id="view_track_en3" type="text" class="validate"  onchange="ld_stats.track_en = 0; track_en()" cul="prod_gen" autocomplete="off">
+			          			<label for="view_track_en3">Gender</label>    
+			           		</div>
+			           		<div class="input-field col l3 m4 s12">
+				      			<input id="view_track_en5" type="text" class="validate"  onchange="ld_stats.track_en = 0; track_en()" cul="size" autocomplete="off">
+				      			<label for="view_track_en5">Size</label>    
+			           		</div>
+			           		<div class="input-field col l3 m4 s12">
+			          			<input id="view_track_en6" type="text" class="validate"  onchange="ld_stats.track_en = 0; track_en()" cul="user_id" autocomplete="off">
+			          			<label for="view_track_en6">User ID</label>    
+			           		</div>
+			           		<div class="input-field col l3 m4 s12">
+			          			<input id="view_track_en4" type="text" class="validate"  onchange="ld_stats.track_en = 0; track_en()" cul="users.phone_number" autocomplete="off">
+			          			<label for="view_track_en4">User Phone number</label>    
+			           		</div>
+			           		<div class="input-field col l3 m4 s12">
+			          			<input id="view_track_en7" type="text" class="validate"  onchange="ld_stats.track_en = 0; track_en()" cul="users.city" autocomplete="off">
+			          			<label for="view_track_en7">User City</label>    
+			           		</div>
+			           		<div class="input-field col l3 m4 s12">
+			          			<input id="view_track_en8" type="text" class="validate"  onchange="ld_stats.track_en = 0; track_en()" cul="users.fname" autocomplete="off">
+			          			<label for="view_track_en8">User First Name</label>    
+			           		</div>
+			           		<div class="input-field col l3 m4 s12">
+			          			<input id="view_track_en9" type="text" class="validate"  onchange="ld_stats.track_en = 0; track_en()" cul="users.lname" autocomplete="off">
+			          			<label for="view_track_en9">User Last Name</label>    
+			           		</div>
+						</div>
+					</div>
+					<div class="row" id="order_list"></div>					
+				</div>
+
+			<!-- Delivered Orders -->
+				<div class="dy_page section" id="deliveries">
+					<div class="row">
+				      	<a class="btn btn-flat white" id="total_sales" style="position: fixed; bottom: 20px; left: 10px;"></a>
+						<table class="col s12 hoverable transparent z-depth-0">
+				        <thead>
+				          	<tr>
+				              	<th data-field="price">User ID</th>
+				              	<th data-field="price">Cost</th>
+				          		<th data-field="id">Order Details</th>
+				          		<th data-field="id">Product</th>
+				          		<th data-field="id">Design</th>
+				          </tr>
+				        </thead>
+				        <tbody></tbody>
+				      </table>
+					</div>					
+				</div>
+
+			<!-- User Messages -->
+				<div class="dy_page section" id="user_messages">
+				    <a class="btn btn-flat white" id="total_msg" style="position: fixed; bottom: 20px; left: 10px;">Total number of messages: <span>0</span></a>
+					<div class="row"></div>					
+				</div>
+
+			<!-- Dialog User Details -->
+				<div id="user_details" class="modal modal-fixed-footer">
+				    <div class="modal-content">
+				    </div>
+				    <div class="modal-footer">
+				    	<a class="btn-flat transparent left" id="date_Added">Date Registered: <span></span></a>
+				      	<a class="modal-action modal-close btn right white black-text"><i class="mdi-navigation-close left"></i>Close</a>
+				    </div>
+				</div>
+		</div>
+    </body>
+</html>

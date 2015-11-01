@@ -1,4 +1,3 @@
-var going_here = {back: 'acc_profile', here: ''};
 var check_out_list = [], order_type = 0;
 var gen_load_state_info = {'save_dsn': 0, 'orders': 0};
 
@@ -66,7 +65,7 @@ $( document ).ready(function(){
 					if(que < 1){
 		    			que = 0;
 			    		$('#preloader').addClass('hide');
-			    		$('#preloader p').html('Please Wait<br>Communicating with server<br>');
+			    		$('#preloader p').html('Loading ...<br>');
 			    	}else{
 			    		$('#preloader p').append('.');
 			    	}
@@ -103,11 +102,11 @@ $( document ).ready(function(){
 				if(res !== ''){
 					user_data = res;
 					set_profile_data();
-					open_this(going_here.back);
-					if(going_here.back == 'acc_profile')
+					if(going_here.back == 'acc_profile' || going_here.back == 'login_page')
 						get_wish_list();
 					else if(going_here.back == 'order_tracking')
 						get_orders();
+					open_this(going_here.back);					
 				}else{
 					Materialize.toast('Invalid Login Credentials', 2000);
 				}
@@ -115,7 +114,7 @@ $( document ).ready(function(){
 				if(que < 1){
 		    		que = 0;
 		    		$('#preloader').addClass('hide');
-		    		$('#preloader p').html('Please Wait<br>Communicating with server<br>');
+		    		$('#preloader p').html('Loading ...<br>');
 		    	}else{
 		    		$('#preloader p').append('.');
 		    	}
@@ -209,8 +208,25 @@ $( document ).ready(function(){
 			if(data.length > 0){
 				gen_load_state_info.orders = data[data.length - 1].id;
 				$('#order_tracking>.row>.col>p>span.red-text').html(data.length);
+				var output = '';
 				for (var i = data.length - 1; i >= 0; i--) {
-					$('#order_tracking>.row>.col>table>tbody.order_table').append('<tr id="item_' + data[i].id + '"><td><div class="col l12 m12 s12"><div class="canv_item center" prod-id="' + data[i].prod_id + '" gender="' + data[i].prod_gen + '" prod-price="' + data[i].prod_price + '"><img src="img/products/' + data[i].prod_gen + '/' + data[i].prod_id + '.jpg"><img src="img/products/' + data[i].prod_gen + '/' + data[i].prod_id + '.png" style="background-color: ' + data[i].prod_cl+ '"></div><div class="brush_on"><div class="desn_contner" dsn-price="' + data[i].dsn_price +'">' + data[i].svg + '</div></div></div></td><td>GHS ' + (parseInt(data[i].prod_price) + parseInt(data[i].dsn_price)) + '</td><td>' + data[i].quantity + '</td><td>' + data[i].size + '</td><td>' + (data[i].quantity *  (parseInt(data[i].prod_price) + parseInt(data[i].dsn_price)))+ '</td><td>' + data[i].date_added + '</td><td class="green-text">' + data[i].status + '</td><td><a class="btn btn-flat white"  onclick="re_order(\'' + data[i].prod_id + '\', \'' + data[i].prod_cl + '\', \'' +data[i].prod_gen+ '\', \''+ data[i].dsn_id+'\', \'' + data[i].dsn_cl + '\', \'' + data[i].prod_price+ '\', \'' + data[i].dsn_price + '\', \'' + data[i].id + '\')"><i class="mdi-navigation-refresh grey-text text-darken-2"></i></a><a class="btn btn-flat white"  onclick="open_this_dsn(\'' + data[i].prod_id + '\', \'' + data[i].prod_cl + '\', \'' +data[i].prod_gen+ '\', \''+ data[i].dsn_id+'\', \'' + data[i].dsn_cl + '\', \'' + data[i].prod_price+ '\', \'' + data[i].dsn_price + '\');"><i class="mdi-action-visibility blue-text text-darken-2"></i></a><a class="btn btn-flat white"  onclick="del_purch(' + data[i].id + ')"><i class="mdi-action-delete red-text text-darken-2"></i></a></td></tr>');
+					output = '<tr id="item_' + data[i].id + '">';
+					output += '<td><div class="col l12 m12 s12"><div class="canv_item center" prod-id="' + data[i].prod_id + '" gender="' + data[i].prod_gen + '" prod-price="' + data[i].prod_price + '"><img src="img/products/' + data[i].prod_gen + '/' + data[i].prod_id + '.jpg"><img src="img/products/' + data[i].prod_gen + '/' + data[i].prod_id + '.png" style="background-color: ' + data[i].prod_cl+ '"></div><div class="brush_on"><div class="desn_contner" dsn-price="' + data[i].dsn_price +'">' + data[i].svg + '</div></div></div></td>';
+					output += '<td>GHS ' + (parseInt(data[i].prod_price) + parseInt(data[i].dsn_price)) + '</td>';
+					output += '<td>' + data[i].quantity + '</td>';
+					output += '<td>' + data[i].size + '</td>';
+					output += '<td>' + (data[i].quantity *  (parseInt(data[i].prod_price) + parseInt(data[i].dsn_price)))+ '</td>';
+					output += '<td>' + data[i].date_added + '</td>';
+					output += '<td class="green-text">' + ord_st[data[i].status] + '</td>';
+					output += '<td><a class="btn btn-flat white"  onclick="re_order(\'' + data[i].prod_id + '\', \'' + data[i].prod_cl + '\', \'' +data[i].prod_gen+ '\', \''+ data[i].dsn_id+'\', \'' + data[i].dsn_cl + '\', \'' + data[i].prod_price+ '\', \'' + data[i].dsn_price + '\', \'' + data[i].id + '\')"><i class="mdi-navigation-refresh grey-text text-darken-2"></i></a><a class="btn btn-flat white"  onclick="open_this_dsn(\'' + data[i].prod_id + '\', \'' + data[i].prod_cl + '\', \'' +data[i].prod_gen+ '\', \''+ data[i].dsn_id+'\', \'' + data[i].dsn_cl + '\', \'' + data[i].prod_price+ '\', \'' + data[i].dsn_price + '\');"><i class="mdi-action-visibility blue-text text-darken-2"></i></a>';
+
+					if(data[i].status == 0 || data[i].status > 2){
+						output += '<a class="btn btn-flat white"  onclick="del_purch(' + data[i].id + ')"><i class="mdi-action-delete red-text text-darken-2"></i></a>';
+					}
+					output += '</td>';
+					output += '</tr>';
+
+					$('#order_tracking>.row>.col>table>tbody.order_table').append(output);
 					$('#order_tracking>.row>.col>table>tbody.order_table #item_' +data[i].id+ ' .brush_on .desn_contner svg .dsn_path_col').attr('fill', data[i].dsn_cl);
 				};
 				$('#order_tracking>.row>.col>table>tbody.order_table .brush_on .desn_contner svg').attr('width', '37.5px');
@@ -430,7 +446,7 @@ $( document ).ready(function(){
 							if(que < 1){
 					    		que = 0;
 					    		$('#preloader').addClass('hide');
-					    		$('#preloader p').html('Please Wait<br>Communicating with server<br>');
+					    		$('#preloader p').html('Loading ...<br>');
 					    	}else{
 					    		$('#preloader p').append('. ');
 					    	}
@@ -471,6 +487,8 @@ $( document ).ready(function(){
 					Materialize.toast('Purchase Successfull', 3000);
 					open_this('order_tracking');
 					get_orders();
+					$('#add_comment').openModal();
+
 				}else{
 					Materialize.toast('Oops Error. Try again later.', 2000);	
 				}
@@ -620,6 +638,17 @@ $( document ).ready(function(){
 	}
 	reset_pass = reset_user_passPhrase;
 });
+/*Send Comment*/
+$( document ).ready(function(){
+	function send_user_review(){
+		sql = 'INSERT INTO comments (user_id, msg) VALUES ("' + user_data.user_id + '", "' + $('#add_comment #comment_text').val() + '");';
+		sql_call_back = function (ind) {
+			Materialize.toast('Thanks for reviewing our services', 2000);
+		}
+		ins_sql(sql);
+	}
+	send_com = send_user_review;
+});
 /* init */
 $( document ).ready(function(){
 	$('.button-collapse').sideNav({
@@ -654,7 +683,8 @@ $( document ).ready(function(){
 				return true;
 			}else{
 				Materialize.toast('<span>Please Login or Register to continue</span><a onclick="open_this(\'desn_studio\')" class="btn-flat red-text truncate"><i class="mdi-navigation-arrow-back left red-text"></i>Back</a>', 3000);
-				open_this('login_page');				
+				open_this('login_page');
+				going_here.back = id;
 				return false;
 			} 
 		}

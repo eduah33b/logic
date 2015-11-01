@@ -7,16 +7,15 @@ $( document ).ready(function(){
 				$('#look_book .loobbook_imgs').append('<div class="col l4 m6 s12 "><img class="materialboxed" data-caption="' + data[i].name + '" src="img/lookBook/' + data[i].id + '.jpg"></div>')
 			}
 			$('.materialboxed').materialbox();
-			if(state_data.last_look_item == 0){
-				if (document.location.href.split('#').length > 1)
-					go_to(document.location.href.split('#')[1].split("?")[0]);
-			};
+			
+			console.log(1);
 			if(limit > data.length){
 				$('#look_book #view_more_but').html('No more items left');
 				$('#look_book #view_more_but').attr('onclick', 'Materialize.toast("No more items to display", 1000)')
 			}else{
 				state_data.last_look_item = data[data.length - 1].id;
-			}			
+			}
+			sql_call_back = null;			
 		}
 		get_sql(sql);
 	}

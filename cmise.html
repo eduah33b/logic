@@ -16,9 +16,9 @@
 		<!--Let browser know website is optimized for mobile-->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     </head>
-    <body class="grey lighten-4">
+    <body class="grey lighten-2">
    		<div id="preloader" class="valign-wrapper hide">
-   			<p class="valign truncate">Please Wait<br>Communicating with server<br></p>
+   			<p class="valign flow-text center">Loading ...<br></p>
 	  		<div class="preloader-wrapper big active valign">
 		      <div class="spinner-layer spinner-blue">
 		        <div class="circle-clipper left">
@@ -495,6 +495,23 @@
 			    			</div>
 	  			</div>
 	  		</div>
-	  	</div>	  	
+	  	</div>
+
+	  	<div id="add_comment" class="modal">
+		    <div class="modal-content">
+		    	<div class="row">
+			      	<h4>Hello, :)</h4>
+			      	<p>Thanks for using our services</p>
+			      	<div class="input-field col s12">
+		            	<textarea id="comment_text" class="materialize-textarea" length="120"></textarea>
+		            	<label for="comment_text">Please leave a comment about your user experience</label>
+		          	</div>
+		        </div>
+		    </div>
+		    <div class="modal-footer">
+		    	<a class="btn white modal-action modal-close waves-effect waves-green green-text" onclick="send_com()">Submit</a>
+		      	<a class="btn white modal-action modal-close waves-effect waves-green red-text left">Close</a>
+		    </div>
+		</div>
     </body>
 </html>

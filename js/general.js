@@ -1,6 +1,8 @@
 var user_data = '', sql_call_back, sql;
 var val_email = /\S+@\S+\.\S+/;
 var que = 0;
+var going_here = {back: 'acc_profile', here: 'acc_profile'};
+var ord_st = ['Your order is pending appoval', 'Your Design is in production', 'You design is enroute to you', 'Product has been delivered', 'Order canceled'];
 
 $( document ).ready(function(){
 
@@ -53,7 +55,7 @@ $( document ).ready(function(){
 			    	if(que < 1){
 			    		que = 0;
 			    		$('#preloader').addClass('hide');
-			    		$('#preloader p').html('Please Wait<br>Communicating with server<br>');
+			    		$('#preloader p').html('Loading ...<br>');
 			    	}else{
 			    		$('#preloader p').append('.');
 			    	}			    				    	
@@ -64,14 +66,33 @@ $( document ).ready(function(){
 			    	if(que < 1){
 			    		que = 0;
 			    		$('#preloader').addClass('hide');
-			    		$('#preloader p').html('Please Wait<br>Communicating with server<br>');
+			    		$('#preloader p').html('Loading ...<br>');
 			    	}else{
 			    		$('#preloader p').append('.');
 			    	}
 			    }
 			});
 	    }
-	    get_sql = get_sq_data;	    
+	    get_sql = get_sq_data;
+
+	    function send_upload(formdata) {
+	    	$.ajax({
+		        url : 'api/img_upload.php',
+		       	type : 'POST',
+		       	data : formdata,
+		       	processData: false,  // tell jQuery not to process the data
+		       	contentType: false,  // tell jQuery not to set contentType
+		        success: function(data, textStatus, jqXHR)
+		        {
+		            sql_call_back(data);
+		        },
+		        error: function(jqXHR, textStatus, errorThrown)
+		        {
+		            Materialize.toast('Error uploading file', 2000)
+		        }
+		    });
+	    }
+	    s_upload = send_upload;
 
 	/* String conversions */
 		String.prototype.toProperCase = function () {

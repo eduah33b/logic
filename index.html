@@ -21,7 +21,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     </head>
     <body class="grey lighten-4">
-    	<nav class="transparent black-text" style="box-shadow: none; position: absolute; margin-top: 10px;">
+    	<nav class="transparent black-text" style="box-shadow: none; position: absolute; margin-top: 25px;z-index: 8;">
 		    <div class="nav-wrapper transparent">
 		    	<div class="brand-logo black-text hide-on-med-and-down" style="margin-left: 70px;"><img src="img/logo.png" style="margin-top: 10px;margin-bottom: -10px;margin-right: 10px;height: 42px;">logic</div>
 		      <ul class="right hide-on-small-only" style="padding-right: 14px;">
@@ -41,33 +41,35 @@
 		    </div>
 		</nav>
     	<div id="login_nav_bar" class="transparent right-align">
-    		<a class="btn-flat"><span class="pe-so-facebook grey-text text-darken-1"></span></a>
-   			<a class="btn-flat"><span class="pe-so-twitter grey-text text-darken-1"></span></a>
-   			<a class="btn-flat"><span class="pe-so-instagram grey-text text-darken-1"></span></a>
-   			<a class="btn-flat"><span class="pe-so-youtube-1 grey-text text-darken-1"></span></a>
+    		<a class="btn-flat btn-sm-pad"><span class="pe-so-facebook grey-text text-darken-1"></span></a>
+   			<a class="btn-flat btn-sm-pad"><span class="pe-so-twitter grey-text text-darken-1"></span></a>
+   			<a class="btn-flat btn-sm-pad"><span class="pe-so-instagram grey-text text-darken-1"></span></a>
+   			<a class="btn-flat btn-sm-pad"><span class="pe-so-youtube-1 grey-text text-darken-1"></span></a>
     		<a class="btn-flat grey lighten-2 hide-on-small-only" href="cmise.html#register_page">Register</a>
     		<a class="btn-flat grey lighten-2 hide-on-small-only" href="cmise.html#login_page">Login</a>
     	</div>
-        
 
-		<div class="row grey lighten-2" style="height: 100vh;" id="home_page">
-			<div class="col l5 m1s s1 center">
-				<img src="img/landing/1.png" class="" style="height: 90vh; margin-top: 10vh;">
+		<div class="row grey lighten-2" style="height: 100vh; overflow: hidden;" id="home_page">
+			<div class="col l5 m1s s1 center fly" id="landing_top_img">
+				<img src="img/landing/Top/0.png" class="current">
+				<img src="img/landing/Top/1.png" >
+				<img src="img/landing/Top/2.png" >
+				<img src="img/landing/Top/3.png" >
+				<img src="img/landing/Top/4.png" >
 			</div>
-			<div class="col l7 m11 s11" id="landing_top" style="height: 100vh;">
-				<h2 class="hide-on-med-and-down">NEXT-GEN OF PRODUCT CUSTOMISATION</h2>
-				<h3 class="hide-on-small-only hide-on-large-only">NEXT-GEN OF PRODUCT CUSTOMISATION</h3>
-				<h4 class="hide-on-med-and-up">NEXT-GEN OF PRODUCT CUSTOMISATION</h4>
+			<div class="col l7 m11 s11" id="landing_top" style="height: 100vh; position: relative; background-color: rgba(224, 224, 224, 0.7);">
 
-				<p class="grey-text text-darken-2">Easy customisation and delivery to you doorstep</p>
+				<div id="landing_title">
+					<h2 id="" class="flow-text">NEXT-GEN OF PRODUCT CUSTOMISATION</h2>
+					<p class="grey-text text-darken-3 flow-text" id="landing_text"> Easy customisation and delivery to you doorstep</p>
+				</div>
 
-				<div class="col s13">
-					<a class="btn rounded white black-text" href="cmise.html#desn_studio">Customise Now</a>
-					<a class="btn rounded white black-text" href="cmise.html#register_page">Register</a>					
+				<div id="landing_buttons">
+					<a class="btn btn-large rounded white black-text truncate bordered_btn" href="cmise.html#desn_studio">Customise Now</a>
+					<a class="btn btn-large rounded white black-text truncate bordered_btn" href="cmise.html#register_page">Register</a>					
 				</div>
 			</div>
 		</div>
-
 		<div class="section grey lighten-4" id="page_1" style="position: relative;" id="what_we_do">
 			<div class="row">
 				<div class="col s12">
@@ -132,7 +134,6 @@
 			</div>
 			 <a onclick="go_to('home_page')" class="btn-floating btn-large waves-effect waves-light transparent" id="up_ic" style="position: absolute; top: 0px; right: 0px; margin:20px;"><i class="up_ic mdi-hardware-keyboard-backspace black-text"></i></a>
 		</div>
-
 		<div class="section grey lighten-4" id="look_book" style="min-height: 80vh;">
 			<div class="container">
 				<div class="row">
@@ -151,30 +152,31 @@
 				</div>
 			</div>
 		</div>
-
-		<div class="section white-text" style="background-color: #00d3ca;" id="news_letter">
-			<div class="row">
-				<div class="col l3 m3 s1">
+		<div class="section white-text blue"id="news_letter">
+			<div class="row container">
+				<div class="col l4 m4 s1">
 					<img src="img/landing/2.png" style="width: 100%; margin-top: 10vh; min-width: 300px;">
 				</div>
-				<div class="col l9 m9 s11" style="padding: 10%; padding-bottom: 0px; padding-top: 20px;background-color: rgba(0, 211, 202, 0.4);">
+				<div class="col l8 m8 s11" style="background-color: rgba(33, 150, 243, 0.4); position: relative; padding: 10px 20px;">
 					<h5 class="flow-text">CUSTOMISE AND ORDER YOUR T-SHIRTS</h5>
 					<p>
 						Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
 					</p>
-					<br><br>
-					<div class="col s12" style="min-width: 320px;margin-left: -60px;">
-						<a class="btn rounded teal lighten-2  white-text left" href="cmise.html#desn_studio">Get Started</a>
-						<a class="btn rounded teal lighten-2  white-text right">Subscribe</a>
+					<br>
+					<div class="col s12 center">
+						<a class="btn white black-text col m6 offset-m3 s12" href="cmise.html#desn_studio">Get Started</a>						
 					</div>
-					<div class="input-field col s12" style="margin-top: 50px;">
-						Sign-up to logics newsletter(email)
-			          	<input id="email" type="text" class="validate" placeholder="Your email">
-			        </div>
+					<div class="col s12" style="margin-top: 30px;">
+						<div class="input-field col l7 m6 s12">
+				          	<input id="s_email_1" type="text" class="validate active truncate">
+				          	<label for="s_email_1" class="white-text">Your Email</label>
+				        </div>
+				        <br>
+				        <a class="btn blue white-text col l5 m6 s12"><i class="mdi-content-send left"></i> Subscribe</a>
+				    </div>
 				</div>
 			</div>
 		</div>
-
 		<div class="section grey lighten-4" id="how_it_works">
 			<div class="row">
 				<div class="col l5 m5 s12" style="padding: 7%;padding-top: 10%;">
@@ -214,20 +216,29 @@
 				<div class="col l6 m6 s12 center">
 					<h5>Video</h5>
 					<div class="col s12">
-      					<div class="video-container no-controls" style="height: 100%">
+      					<!-- <div class="video-container no-controls">
 					        <iframe width="853" height="480" src="//www.youtube.com/embed/uMM0lRfX6YI" frameborder="0" allowfullscreen></iframe>
-					    </div>				        
-						<!-- <video class="responsive-video no-controls" controls>
+					    </div> -->				        
+						<video class="responsive-video no-controls" controls>
 					    	<source src="img/landing/about.mp4" type="video/mp4">
-					  	</video> -->
+					  	</video>
 					</div>
 				</div>
 			</div>
 		</div>
+		<div class="section white" id="comments_pane">
+				<div class="row container">
+					<div class="col s12 center">
+						<h5>What our customers are saying</h5>
+					</div>
+					<div class="col s12" id="user_comments">						
+					</div>
+				</div>
+		</div>
 		<div class="divider"></div>
 		<div class="section grey lighten-4" id="contact_us">
 	    	<div class="container">
-	    	<br>
+	    	<br><br><br>
 	    		<h5 class="center flow-text">Get In Touch</h5>
 	    		<div class="row">
 	    			<div class="col l8 m12 s12">
@@ -304,8 +315,31 @@
     </body>
     <script type="text/javascript">
 		$( document ).ready(function(){
-			view_more_lookbook(3);
 			$('#up_ic').pushpin({ top: $('#home_page').height() });
+
+			var carusole = 1;
+			var carusole_ln = $('#landing_top_img>img').length;
+
+			setInterval(function(){ 
+								$('#landing_top_img>img:nth-child(' +carusole+ ')').removeClass('current');
+								carusole = carusole %  - carusole_ln;
+								carusole++;
+								$('#landing_top_img>img:nth-child(' +carusole+ ')').addClass('current');
+			}, 6000);
+
+			function get_user_comments(lsid){
+				sql = 'SELECT users.fname, comments.msg from comments, users where users.user_id = comments.user_id and comments.id > ' + lsid + ' order by comments.id asc limit 3;';
+				sql_call_back = function (data) {
+					view_more_lookbook(3);
+					$('#user_comments').html('');
+					for (var i = data.length - 1; i >= 0; i--) {
+						$('#user_comments').append('<div class="col l4 m6 s12"><b>' +data[i].fname+ '</b><br><span class="flow-text grey-text">' +data[i].msg+ '</span></div>');
+					};					
+				}
+				get_sql(sql);
+			}
+			get_user_comments(0);
+
 		});
 	</script>
 </html>
