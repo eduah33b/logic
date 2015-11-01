@@ -25,26 +25,17 @@ $( document ).ready(function(){
 		open_this = open_and_go_to;		
 
 	/* Gen Ajax*/
-		function ins_sq_data(sql) {
-			$('#preloader').removeClass('hide');
-			que++;
+		function ins_sq_data(sql) {			
 	    	$.ajax({
 			    type: "POST",
 			    url: "api/ins_sql.php",
 			    data: {sql: sql},
 			    success: function(id){
-			    	sql_call_back(id);
-			    	if(que != 0)
-			    		que--;
-			    	if(que == 0){
-			    		$('#preloader').addClass('hide');
-			    		$('#preloader').html('Please Wait<br>Communicating with server<br>');
-			    	}else{
-			    		$('#preloader p').append('.');
-			    	}
+			    	sql_call_back(id);			    	
 			    },
 			    error: function(){
 			    	Materialize.toast('): Oops!! Error Adding Data To DB', 5000);
+
 			    }
 			});
 	    }
@@ -58,17 +49,25 @@ $( document ).ready(function(){
 			    data: {sql: sql},
 			    success: function(res){
 			    	sql_call_back(res);
-			    	if(que != 0)
-			    		que--;
-			    	if(que == 0){
+			    	que--;
+			    	if(que < 1){
+			    		que = 0;
 			    		$('#preloader').addClass('hide');
-			    		$('#preloader').html('Please Wait<br>Communicating with server<br>');
+			    		$('#preloader p').html('Please Wait<br>Communicating with server<br>');
 			    	}else{
-			    		$('#preloader p').append('. ');
-			    	}
+			    		$('#preloader p').append('.');
+			    	}			    				    	
 			    },
 			    error: function(){
 			    	Materialize.toast('): Oops!! Error retriving data', 5000);
+			    	que--;
+			    	if(que < 1){
+			    		que = 0;
+			    		$('#preloader').addClass('hide');
+			    		$('#preloader p').html('Please Wait<br>Communicating with server<br>');
+			    	}else{
+			    		$('#preloader p').append('.');
+			    	}
 			    }
 			});
 	    }

@@ -53,13 +53,6 @@ $( document ).ready(function(){
 						
 						set_profile_data();
 						
-						if(que != 0)
-			    			que--;
-				    	if(que == 0){
-				    		$('#preloader').addClass('hide');
-				    	}else{
-				    		$('#preloader p').append('.');
-				    	}
 						open_this(going_here.back);
 					}else if(res.err == 1){
 						 $('#login_page input#email').val(vals[4]);
@@ -69,6 +62,14 @@ $( document ).ready(function(){
 					}else{
 						Materialize.toast('Please verify your registration data', 5000);
 					}
+					que--;
+					if(que < 1){
+		    			que = 0;
+			    		$('#preloader').addClass('hide');
+			    		$('#preloader p').html('Please Wait<br>Communicating with server<br>');
+			    	}else{
+			    		$('#preloader p').append('.');
+			    	}
 				},
 				error: function(){
 					Materialize.toast('Please verify your registration credentials', 5000);
@@ -102,13 +103,6 @@ $( document ).ready(function(){
 				if(res !== ''){
 					user_data = res;
 					set_profile_data();
-					if(que != 0)
-			    		que--;
-			    	if(que == 0){
-			    		$('#preloader').addClass('hide');
-			    	}else{
-			    		$('#preloader p').append('.');
-			    	}
 					open_this(going_here.back);
 					if(going_here.back == 'acc_profile')
 						get_wish_list();
@@ -117,6 +111,14 @@ $( document ).ready(function(){
 				}else{
 					Materialize.toast('Invalid Login Credentials', 2000);
 				}
+				que--;
+				if(que < 1){
+		    		que = 0;
+		    		$('#preloader').addClass('hide');
+		    		$('#preloader p').html('Please Wait<br>Communicating with server<br>');
+		    	}else{
+		    		$('#preloader p').append('.');
+		    	}
 			},
 			error: function(){
 				Materialize.toast('Oops Error logging in', 2000);
@@ -130,7 +132,7 @@ $( document ).ready(function(){
 	/* Product Manip */
 		/* Color Change */
 		$('#desn_studio #ep1 .col_pal>div, #dsn_side_bar #_ep1 .col_pal>div').click(function(){ //change product color
-			$('#desn_studio>.row>.col>.canv_item img:nth-child(2)').css('background-color', $(this).css('background-color').replace(')', ', 0.55)').replace('rgb(','rgba('));
+			$('#desn_studio>.row>.col>.canv_item img:nth-child(2)').css('background-color', $(this).css('background-color').replace(')', ', 0.65)').replace('rgb(','rgba('));
 
 			$('#desn_studio .dsn_share').attr('href', 'cmise.html#desn_studio?prod_id=' + $('#desn_studio>.row>.col>.canv_item').attr('prod-id') + '&prod_cl=' + $('#desn_studio>.row>.col>.canv_item img:nth-child(2)').css('background-color') + '&prod_gen=' + $('#desn_studio>.row>.col>.canv_item').attr('gender') + '&dsn_id=' + $('#desn_studio>.row>.col>.brush_on .desn_contner').attr('dsn-id') + '&dsn_col=' + $('#desn_studio>.row>.col>.brush_on .desn_contner svg .dsn_path_col').attr('fill') + '&prod_price=' + $('#desn_studio>.row>.col>.canv_item').attr('prod-price') + '&dsn_price=' + $('#desn_studio>.row>.col>.brush_on .desn_contner').attr('dsn-price'));
 		});	
@@ -340,7 +342,6 @@ $( document ).ready(function(){
 		$('#order_checkout>.row>.col>table .brush_on .desn_contner svg .dsn_path_col').attr('fill', prod_info.dsn_col);
 	}
 	buy_now = buy_item_now;
-
 	function calc_order_quantity_price(quant, price, itd){
 		$('#order_checkout>.row>.col>table>tbody>tr#item_' + itd + '>td>span').html(quant * price);
 		var prices = $('#order_checkout>.row>.col>table>tbody>tr>td>span');
@@ -352,26 +353,25 @@ $( document ).ready(function(){
 
 	}
 	calc_price = calc_order_quantity_price;
-
 	function place_order_now(){
 		/* Purchase data validation */
-		con = $('#order_checkout>.row .order_table input, #order_checkout>.row .order_table select');
-		for (var i = 0; i < con.length ; i++) {
-			if($(con[i]).val().trim() == ''){
-				$(con[i]).removeClass('valid').addClass('invalid');
+			con = $('#order_checkout>.row .order_table input, #order_checkout>.row .order_table select');
+			for (var i = 0; i < con.length ; i++) {
+				if($(con[i]).val().trim() == ''){
+					$(con[i]).removeClass('valid').addClass('invalid');
 
-				Materialize.toast($(con[i]).attr('er-msg'), 2000);
+					Materialize.toast($(con[i]).attr('er-msg'), 2000);
 
-				$(con[i]).focus();
+					$(con[i]).focus();
 
-				return false;
-			}else{
-				$(con[i]).removeClass('invalid').addClass('valid');
-			}
-		};
+					return false;
+				}else{
+					$(con[i]).removeClass('invalid').addClass('valid');
+				}
+			};
 		/* Reg Data Validation */
 		
-		var vals = ['','','','','',''], con = $('#order_checkout>.row .billing_reg input, #order_checkout>.row .billing_reg textarea, #order_checkout>.row .billing_reg select');
+			var vals = ['','','','','',''], con = $('#order_checkout>.row .billing_reg input, #order_checkout>.row .billing_reg textarea, #order_checkout>.row .billing_reg select');
 		
 			for (var i = 0; i < con.length ; i++) {
 				if($(con[i]).val().trim() == ''){
@@ -403,9 +403,10 @@ $( document ).ready(function(){
 				Materialize.toast('Please check the terms and conditions box', 3000);
 				return false;			
 			}
-
+		/* Register new user */
 			if(user_data == ""){
-				/* Register new user */
+				$('#preloader').removeClass('hide');
+				que++;
 					$.ajax({
 						type: "POST",
 						url: "api/register_new_user.php",
@@ -425,6 +426,14 @@ $( document ).ready(function(){
 							}else{
 								Materialize.toast('Please verify your registration data', 5000);
 							}
+							que--;
+							if(que < 1){
+					    		que = 0;
+					    		$('#preloader').addClass('hide');
+					    		$('#preloader p').html('Please Wait<br>Communicating with server<br>');
+					    	}else{
+					    		$('#preloader p').append('. ');
+					    	}
 						},
 						error: function(){
 							Materialize.toast('Oops Error registering new user', 2000);
@@ -665,8 +674,7 @@ $( document ).ready(function(){
 				};
 				if(sql != ''){
 					get_sql(sql);
-					if(que != 0)
-			    		que--;
+			    	que--;
 					$('#preloader').addClass('hide');
 				}
 				if(document.location.href.split('#')[1].split("?").length < 2 && $('#desn_studio>.row>.col>.brush_on .desn_contner').html() == ''){
