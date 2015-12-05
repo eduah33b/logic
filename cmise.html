@@ -68,7 +68,7 @@
 	      			<a class="logo hide-on-med-and-down"><img src="img/icon.png">Logic</a>
 	      			<ul class="right desn_bar">
 	      				<li title="Items in cart"><a class="btn green white-text" onclick="show_cart()" style="position: relative;"><i class="mdi-action-shopping-basket left" style="font-size: 1.3rem; line-height: 32px;"></i>Checkout <div class="waves-effect waves-circle waves-light red darken-3 white-text center-align" id="cart_count">0</div></a></li>
-	        			<li class="black-text truncate hide-on-small-only" id="nav_fname" onclick="if(check_nav('acc_profile')) get_wish_list();"><img src="img/2.jpg" class="circle" style="height: 50px; width: 50px; float: left; margin: 4px; margin-left:15px;">Hi, <span>Anonymous</span></li>
+	        			<li class="black-text truncate hide-on-small-only" id="nav_fname" onclick="if(check_nav('acc_profile')) get_wish_list();"><img src="img/2.jpg" class="circle" style="height: 50px; width: 50px; float: left; margin: 4px; margin-left:15px;">Hi, <span>Artist</span></li>
 	        			<li><a href="./"><i class="black-text mdi-navigation-close"></i></a></li>
 				    </ul>				    
 	      			<ul class="side-nav fixed center grey darken-4" id="side_bar">
@@ -334,7 +334,11 @@
 	  				<div class="col l4 m6 s12 right center-align" >
 	  					<a class="btn waves-effect waves-purple white black-text col s5" style="margin-top: 20px;" onclick="add_wish()"><i class="mdi-content-save left"></i>Save</a>
 	  					<a class="btn waves-effect waves-light blue col s6 right" style="margin-top: 20px;" onclick="add_cart()"><i class="mdi-action-shopping-basket left"></i>Add To Cart</a>
-	  					<a class="btn waves-effect waves-light red col s12" style="margin-top: 20px;" onclick="buy_now()"><i class="mdi-action-add-shopping-cart left"></i>Purchase Item Now</a>
+	  					<a class="btn waves-effect waves-light red col s12" style="margin-top: 20px;" onclick="buy_now()"><i class="mdi-action-add-shopping-cart left"></i>Buy Now for <span id="cr_dsn_prc">0 GH</span></a>
+	  					<div class="col s12 left-align">
+	  						<p>- Free delivery for oders above 60 GH</p>
+	  						<p>- Free 10 day return</p>
+	  					</div>
 	  				</div>
 	  			</div>
 	  		</div>

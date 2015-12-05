@@ -21,33 +21,25 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     </head>
     <body class="grey lighten-4">
-    	<nav class="transparent black-text" style="box-shadow: none; position: absolute; margin-top: 25px;z-index: 8;">
+    	<nav class="transparent black-text" style="box-shadow: none;position: absolute;z-index: 8;">
 		    <div class="nav-wrapper transparent">
 		    	<div class="brand-logo black-text hide-on-med-and-down" style="margin-left: 70px;"><img src="img/logo.png" style="margin-top: 10px;margin-bottom: -10px;margin-right: 10px;height: 42px;">logic</div>
 		      <ul class="right hide-on-small-only" style="padding-right: 14px;">
 	        	<li><a href="about.html" class="black-text">About-Us</a></li>
 	        	<li><a href="cmise.html#desn_studio" class="black-text">Logic Studio</a></li>
-	        	<li><a onclick="go_to('look_book')" class="black-text">Lookbook</a></li>
+	        	<li><a href="lookBook.html" class="black-text">Lookbook</a></li>
 	        	<li><a href="blog.html" class="black-text">Blog</a></li>
 	        	<li><a onclick="go_to('contact_us')" class="black-text">Contact-Us</a></li>
 		      </ul>
 		      <ul id="slide-out" class="side-nav grey lighten-4">
 			    <li><a href="about.html" class="black-text">About-Us</a></li>
 	        	<li><a href="cmise.html#desn_studio" class="black-text">Logic Studio</a></li>
-	        	<li><a onclick="go_to('look_book')" class="black-text">Lookbook</a></li>
+	        	<li><a href="lookBook.html" class="black-text">Lookbook</a></li>
 	        	<li><a href="blog.html" class="black-text">Blog</a></li>
 	        	<li><a onclick="go_to('contact_us')" class="black-text">Contact-Us</a></li>
 			  </ul>
 		    </div>
 		</nav>
-    	<div id="login_nav_bar" class="transparent right-align">
-    		<a class="btn-flat btn-sm-pad"><span class="pe-so-facebook grey-text text-darken-1"></span></a>
-   			<a class="btn-flat btn-sm-pad"><span class="pe-so-twitter grey-text text-darken-1"></span></a>
-   			<a class="btn-flat btn-sm-pad"><span class="pe-so-instagram grey-text text-darken-1"></span></a>
-   			<a class="btn-flat btn-sm-pad"><span class="pe-so-youtube-1 grey-text text-darken-1"></span></a>
-    		<a class="btn-flat grey lighten-2 hide-on-small-only" href="cmise.html#register_page">Register</a>
-    		<a class="btn-flat grey lighten-2 hide-on-small-only" href="cmise.html#login_page">Login</a>
-    	</div>
 
 		<div class="row grey lighten-2" style="height: 100vh; overflow: hidden;" id="home_page">
 			<div class="col l5 m1s s1 center fly" id="landing_top_img">
@@ -57,21 +49,16 @@
 				<img src="img/landing/Top/3.png" >
 				<img src="img/landing/Top/4.png" >
 			</div>
-			<div class="col l7 m11 s11" id="landing_top" style="height: 100vh; position: relative; background-color: rgba(224, 224, 224, 0.7);">
+			<div class="col l7 m11 s11" id="landing_top">
 
 				<div id="landing_title">
-					<h2 id="" class="flow-text">NEXT-GEN OF PRODUCT CUSTOMISATION</h2>
-					<p class="grey-text text-darken-3 flow-text" id="landing_text"> Easy customisation and delivery to you doorstep</p>
+					<h2 id="" class="flow-text" style="color: rgba(1, 14, 113, 0.9);">Design Your Own T'shirts And Get Exactly What You Want</h2>
 				</div>
-
-				<div id="landing_buttons">
-					<a class="btn btn-large rounded white black-text truncate bordered_btn" href="cmise.html#desn_studio">Customise Now</a>
-					<a class="btn btn-large rounded white black-text truncate bordered_btn" href="cmise.html#register_page">Register</a>					
-				</div>
+				<a class="btn btn-large white blue-text text-darken-4" href="cmise.html#desn_studio" style="position: absolute;left: calc(50% - 100px);bottom: 20vh;">Start Designing</a>
 			</div>
 		</div>
 		<div class="section grey lighten-4" id="page_1" style="position: relative;" id="what_we_do">
-			<div class="row">
+			<div class="row container">
 				<div class="col s12">
 					<p class="center flow-text"><b>What we are offering you</b></p>
 				</div>
@@ -81,8 +68,8 @@
 					</div>
 					<div class="col s8">
 						<br>
-						<b>FREE SHIPPING</b><br>
-						<span class="grey-text text-darken-2">Some Few Words here</span>
+						<b>Free Delivery</b><br>
+						<span class="grey-text text-darken-2">On orders above 60 GH</span>
 					</div>
 				</div>
 				<div class="col l4 m4 s12">
@@ -91,8 +78,8 @@
 					</div>
 					<div class="col s8">
 						<br>
-						<b>FREE SHIPPING</b><br>
-						<span class="grey-text text-darken-2">Some Few Words here</span>
+						<b>Return Policy</b><br>
+						<span class="grey-text text-darken-2">10 days free return or remake</span>
 					</div>
 				</div>
 				<div class="col l4 m4 s12">
@@ -101,8 +88,8 @@
 					</div>
 					<div class="col s8">
 						<br>
-						<b>FREE SHIPPING</b><br>
-						<span class="grey-text text-darken-2">Some Few Words here</span>
+						<b>Share</b><br>
+						<span class="grey-text text-darken-2">Share your designs with your friends</span>
 					</div>
 				</div>
 			</div>
@@ -133,24 +120,6 @@
 				</div>
 			</div>
 			 <a onclick="go_to('home_page')" class="btn-floating btn-large waves-effect waves-light transparent" id="up_ic" style="position: absolute; top: 0px; right: 0px; margin:20px;"><i class="up_ic mdi-hardware-keyboard-backspace black-text"></i></a>
-		</div>
-		<div class="section grey lighten-4" id="look_book" style="min-height: 80vh;">
-			<div class="container">
-				<div class="row">
-					<div class="col s12 center">
-					<br>
-					<br>
-						<h4>Lookbook</h4>
-					</div>				
-				</div>
-				<div class="row loobbook_imgs"></div>
-
-				<div class="row">
-					<div class="col s12 center">
-						<a class="btn rounded white black-text center" href="lookBook.html">View More</a>
-					</div>
-				</div>
-			</div>
 		</div>
 		<div class="section white-text blue"id="news_letter">
 			<div class="row container">
@@ -226,15 +195,6 @@
 				</div>
 			</div>
 		</div>
-		<div class="section white" id="comments_pane">
-				<div class="row container">
-					<div class="col s12 center">
-						<h5>What our customers are saying</h5>
-					</div>
-					<div class="col s12" id="user_comments">						
-					</div>
-				</div>
-		</div>
 		<div class="divider"></div>
 		<div class="section grey lighten-4" id="contact_us">
 	    	<div class="container">
@@ -276,16 +236,16 @@
 	    		<div class="row">
 	    			<div class="col l3 m4 s6">
 	    				<p class="flow-text center grey-text text-darken-2">Sitemap</p>
-	    				<p href="">Home</p>
-	    				<p>About us</p>
-	    				<p>Logic Studio</p>
-	    				<p>Terms</p>
-	    				<p>LookBook</p>
+	    				<p><a href="./">Home</a></p>
+	    				<p><a href="about.html">About us</a></p>
+	    				<p><a href="cmise.html#desn_studio">Logic Studio</a></p>
+	    				<p><a href="TAC.html">Terms</a></p>
+	    				<p><a href="lookBook.html">LookBook</a></p>
 	    			</div>
 	    			<div class="col l3 m4 s6">
 	    				<p class="flow-text center grey-text text-darken-2">Support</p>
-	    				<p>Customise now</p>
-	    				<p>Log In</p>
+	    				<p><a href="cmise.html#desn_studio">Customise now</a></p>
+	    				<p><a href="cmise.html#login_page">Log In</a></p>
 	    				<p>Help</p>
 	    			</div>
 	    			<div class="col l3 m4 s12">
@@ -326,20 +286,6 @@
 								carusole++;
 								$('#landing_top_img>img:nth-child(' +carusole+ ')').addClass('current');
 			}, 6000);
-
-			function get_user_comments(lsid){
-				sql = 'SELECT users.fname, comments.msg from comments, users where users.user_id = comments.user_id and comments.id > ' + lsid + ' order by comments.id asc limit 3;';
-				sql_call_back = function (data) {
-					view_more_lookbook(3);
-					$('#user_comments').html('');
-					for (var i = data.length - 1; i >= 0; i--) {
-						$('#user_comments').append('<div class="col l4 m6 s12"><b>' +data[i].fname+ '</b><br><span class="flow-text grey-text">' +data[i].msg+ '</span></div>');
-					};					
-				}
-				get_sql(sql);
-			}
-			get_user_comments(0);
-
 		});
 	</script>
 </html>

@@ -144,6 +144,7 @@ $( document ).ready(function(){
 				$('#desn_studio>.row>.col>.canv_item').attr('gender', $('#gend_select>a:not(.btn-flat)').attr('id'));
 
 				$('#desn_studio .dsn_share').attr('href', 'cmise.html#desn_studio?prod_id=' + $('#desn_studio>.row>.col>.canv_item').attr('prod-id') + '&prod_cl=' + $('#desn_studio>.row>.col>.canv_item img:nth-child(2)').css('background-color') + '&prod_gen=' + $('#desn_studio>.row>.col>.canv_item').attr('gender') + '&dsn_id=' + $('#desn_studio>.row>.col>.brush_on .desn_contner').attr('dsn-id') + '&dsn_col=' + $('#desn_studio>.row>.col>.brush_on .desn_contner svg .dsn_path_col').attr('fill') + '&prod_price=' + $('#desn_studio>.row>.col>.canv_item').attr('prod-price') + '&dsn_price=' + $('#desn_studio>.row>.col>.brush_on .desn_contner').attr('dsn-price'));
+				updt_cr_pr();
 		}
 		ch_prod_img = change_product_dspd;
 		/* Gender change */
@@ -155,6 +156,7 @@ $( document ).ready(function(){
 			$('#desn_studio>.row>.col>.canv_item').attr('gender', $(state).attr('id'));
 
 			$('#desn_studio .dsn_share').attr('href', 'cmise.html#desn_studio?prod_id=' + $('#desn_studio>.row>.col>.canv_item').attr('prod-id') + '&prod_cl=' + $('#desn_studio>.row>.col>.canv_item img:nth-child(2)').css('background-color') + '&prod_gen=' + $('#desn_studio>.row>.col>.canv_item').attr('gender') + '&dsn_id=' + $('#desn_studio>.row>.col>.brush_on .desn_contner').attr('dsn-id') + '&dsn_col=' + $('#desn_studio>.row>.col>.brush_on .desn_contner svg .dsn_path_col').attr('fill') + '&prod_price=' + $('#desn_studio>.row>.col>.canv_item').attr('prod-price') + '&dsn_price=' + $('#desn_studio>.row>.col>.brush_on .desn_contner').attr('dsn-price'));
+			updt_cr_pr();
 		}
 		prod_gen_ch = product_gender_change;
 
@@ -166,7 +168,7 @@ $( document ).ready(function(){
 			$('#desn_studio .dsn_share').attr('href', 'cmise.html#desn_studio?prod_id=' + $('#desn_studio>.row>.col>.canv_item').attr('prod-id') + '&prod_cl=' + $('#desn_studio>.row>.col>.canv_item img:nth-child(2)').css('background-color') + '&prod_gen=' + $('#desn_studio>.row>.col>.canv_item').attr('gender') + '&dsn_id=' + $('#desn_studio>.row>.col>.brush_on .desn_contner').attr('dsn-id') + '&dsn_col=' + $('#desn_studio>.row>.col>.brush_on .desn_contner svg .dsn_path_col').attr('fill') + '&prod_price=' + $('#desn_studio>.row>.col>.canv_item').attr('prod-price') + '&dsn_price=' + $('#desn_studio>.row>.col>.brush_on .desn_contner').attr('dsn-price'));
 		});
 		/* Design Change */
-		function change_dsn_image(from){ //change product color
+		function change_dsn_image(from){ //change dsn image
 			$('#desn_studio>.row>.col>.brush_on .desn_contner').html($(from).html());
 			$('#desn_studio>.row>.col>.brush_on .desn_contner svg').attr('width', '150px');
 			$('#desn_studio>.row>.col>.brush_on .desn_contner svg').attr('height', '150px');
@@ -174,8 +176,15 @@ $( document ).ready(function(){
 			$('#desn_studio>.row>.col>.brush_on .desn_contner').attr('dsn-price', $(from).attr('dsn-price'));
 
 			$('#desn_studio .dsn_share').attr('href', 'cmise.html#desn_studio?prod_id=' + $('#desn_studio>.row>.col>.canv_item').attr('prod-id') + '&prod_cl=' + $('#desn_studio>.row>.col>.canv_item img:nth-child(2)').css('background-color') + '&prod_gen=' + $('#desn_studio>.row>.col>.canv_item').attr('gender') + '&dsn_id=' + $('#desn_studio>.row>.col>.brush_on .desn_contner').attr('dsn-id') + '&dsn_col=' + $('#desn_studio>.row>.col>.brush_on .desn_contner svg .dsn_path_col').attr('fill')+ '&prod_price=' + $('#desn_studio>.row>.col>.canv_item').attr('prod-price') + '&dsn_price=' + $('#desn_studio>.row>.col>.brush_on .desn_contner').attr('dsn-price'));
+			updt_cr_pr();
 		}
 		ch_dsn_img = change_dsn_image;
+
+		function update_current_price () {
+			var price = parseInt($('#desn_studio>.row>.col>.canv_item').attr('prod-price')) + parseInt($('#desn_studio>.row>.col>.brush_on .desn_contner').attr('dsn-price'));
+			$('#cr_dsn_prc').html(price + ' GH');
+		}
+		updt_cr_pr = update_current_price;
 });
 /* Get and set user Stuff */
 $( document ).ready(function(){
@@ -714,6 +723,7 @@ $( document ).ready(function(){
 					$('#desn_studio>.row>.col>.brush_on .desn_contner').attr('dsn-id', data[0].id);
 					$('#desn_studio>.row>.col>.brush_on .desn_contner').attr('dsn-price', data[0].price);					
 				}
+				updt_cr_pr();
 			};
 			get_sql(sql);
 		}
